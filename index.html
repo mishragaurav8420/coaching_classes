@@ -43,19 +43,34 @@
             font-weight: bold;
         }
         .hero {
+            position: relative;
+            height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            justify-content: center;
+            text-align: center;
             color: #fff;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            z-index: 1;
         }
         .hero-content {
-            max-width: 50%;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
         }
         .hero-content h1 {
             font-family: 'Open Sans', sans-serif;
-            font-size: 3em;
+            font-size: 3.5em;
             margin-bottom: 20px;
         }
         .hero-content .subtitle {
@@ -67,8 +82,8 @@
             margin-bottom: 30px;
         }
         .btn {
-            background-color: #fff;
-            color: #007BFF;
+            background-color: #007BFF;
+            color: #fff;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
@@ -76,12 +91,29 @@
             transition: background-color 0.3s ease;
         }
         .btn:hover {
-            background-color: #f0f0f0;
+            background-color: #0056b3;
         }
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slideshow img.active {
+            opacity: 1;
         }
         .about-me, .courses, .placement-guarantee {
             padding: 50px 20px;
@@ -195,16 +227,20 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Slideshow -->
     <section class="hero">
+        <!-- Slideshow -->
+        <div class="slideshow">
+            <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Slide 1" class="active">
+            <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Slide 2">
+            <img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Slide 3">
+        </div>
+        <!-- Hero Content -->
         <div class="hero-content">
             <h1>Welcome to Tech Coaching</h1>
             <p class="subtitle">Empowering you to master the latest technologies and advance your career.</p>
             <p>With over <strong>10 years of combined experience</strong> in Python, Django, Databases, Angular, React, HTML, CSS, and JavaScript, we’re here to guide you on your journey to becoming a tech expert.</p>
             <a href="courses.html" class="btn">Explore Courses</a>
-        </div>
-        <div class="hero-image">
-            <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg" alt="Tech Coaching Hero Image">
         </div>
     </section>
 
@@ -289,5 +325,24 @@
     <footer>
         <p>&copy; 2023 Tech Coaching. All rights reserved.</p>
     </footer>
+
+    <!-- Slideshow Script -->
+    <script>
+        const slides = document.querySelectorAll('.slideshow img');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    </script>
 </body>
 </html>
