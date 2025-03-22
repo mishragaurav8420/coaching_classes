@@ -213,19 +213,30 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Tech Coaching Logo">
+        <!-- Menu Icon (Hamburger) -->
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i> <!-- Font Awesome Hamburger Icon -->
         </div>
+
+        <!-- Navigation Menu -->
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+            <ul id="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="courses.html"><i class="fas fa-book"></i> Courses</a></li>
+                <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </nav>
     </header>
+
+    <script>
+        // JavaScript to toggle the menu on mobile
+        function toggleMenu() {
+            const navMenu = document.getElementById("nav-menu");
+            navMenu.classList.toggle("active");
+        }
+    </script>
 
     <!-- Hero Section with Slideshow -->
     <section class="hero">
@@ -238,7 +249,7 @@
         </div>
         <!-- Hero Content -->
         <div class="hero-content">
-            <h1>Welcome to Tech Coaching</h1>
+            <h1>Welcome to Tech Journey</h1>
             <p class="subtitle">Empowering you to master the latest technologies and advance your career.</p>
             <p>With over <strong>10 years of combined experience</strong> in Python, Django, Databases, Angular, React, HTML, CSS, and JavaScript, we’re here to guide you on your journey to becoming a tech expert.</p>
             <a href="courses.html" class="btn">Explore Courses</a>

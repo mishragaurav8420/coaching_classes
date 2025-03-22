@@ -91,3 +91,8 @@ footer {
     width: 100%;
     bottom: 0;
 }
+.logo img {
+    width: 100px; /* Adjust as needed */
+    height: 20px; /* Maintain aspect ratio */
+    display: block; /* Ensure it behaves as a block element */
+}
