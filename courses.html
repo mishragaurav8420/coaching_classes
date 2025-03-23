@@ -19,7 +19,7 @@
             background-color: #f9f9f9;
         }
         header {
-            background-color: #007BFF;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
             color: #fff;
             padding: 20px;
             display: flex;
@@ -90,6 +90,12 @@
             color: #666;
             padding: 0 20px 20px;
         }
+        .course-item .price {
+            font-size: 1.2em;
+            color: #28a745;
+            font-weight: bold;
+            margin: 10px 0;
+        }
         .course-item .btn {
             display: inline-block;
             margin: 0 20px 20px;
@@ -104,11 +110,56 @@
             background-color: #0056b3;
         }
         footer {
-            background-color: #333;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
             color: #fff;
             text-align: center;
             padding: 20px;
             margin-top: 50px;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+        }
+        .modal-content h3 {
+            font-size: 2em;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+        .modal-content p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .modal-content .price {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333;
         }
     </style>
 </head>
@@ -133,23 +184,29 @@
     <section class="courses">
         <h2>Our Courses</h2>
         <div class="course-list">
-            <div class="course-item">
+            <!-- Course 1 -->
+            <div class="course-item" onclick="openModal('web-development')">
                 <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Web Development">
                 <h3>Web Development</h3>
                 <p>Learn to build responsive websites with HTML, CSS, JavaScript, and modern frameworks like React and Angular.</p>
-                <a href="#" class="btn">Enroll Now</a>
+                <div class="price">₹15,000</div>
+                <a href="contact.html?course=web-development" class="btn">Enroll Now</a>
             </div>
-            <div class="course-item">
+            <!-- Course 2 -->
+            <div class="course-item" onclick="openModal('data-science')">
                 <img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Data Science">
                 <h3>Data Science</h3>
                 <p>Master data analysis, machine learning, and data visualization using Python, R, and advanced tools.</p>
-                <a href="#" class="btn">Enroll Now</a>
+                <div class="price">₹20,000</div>
+                <a href="contact.html?course=data-science" class="btn">Enroll Now</a>
             </div>
-            <div class="course-item">
+            <!-- Course 3 -->
+            <div class="course-item" onclick="openModal('cloud-computing')">
                 <img src="https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Cloud Computing">
                 <h3>Cloud Computing</h3>
                 <p>Learn to deploy and manage applications on AWS, Azure, and GCP with hands-on projects.</p>
-                <a href="#" class="btn">Enroll Now</a>
+                <div class="price">₹18,000</div>
+                <a href="contact.html?course=cloud-computing" class="btn">Enroll Now</a>
             </div>
         </div>
     </section>
@@ -159,6 +216,61 @@
         <p>&copy; 2023 Tech Coaching. All rights reserved.</p>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- Course Details Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Web Development</h3>
+            <p id="modal-description">Learn to build responsive websites with HTML, CSS, JavaScript, and modern frameworks like React and Angular.</p>
+            <div class="price" id="modal-price">₹15,000</div>
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>Live interactive sessions</li>
+                <li>PDF notes and resources</li>
+                <li>Recordings of all lectures</li>
+                <li>Hands-on projects and assignments</li>
+            </ul>
+            <a href="contact.html?course=web-development" class="btn">Enroll Now</a>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openModal(course) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalPrice = document.getElementById('modal-price');
+
+            if (course === 'web-development') {
+                modalTitle.textContent = 'Web Development';
+                modalDescription.textContent = 'Learn to build responsive websites with HTML, CSS, JavaScript, and modern frameworks like React and Angular.';
+                modalPrice.textContent = '₹15,000';
+            } else if (course === 'data-science') {
+                modalTitle.textContent = 'Data Science';
+                modalDescription.textContent = 'Master data analysis, machine learning, and data visualization using Python, R, and advanced tools.';
+                modalPrice.textContent = '₹20,000';
+            } else if (course === 'cloud-computing') {
+                modalTitle.textContent = 'Cloud Computing';
+                modalDescription.textContent = 'Learn to deploy and manage applications on AWS, Azure, and GCP with hands-on projects.';
+                modalPrice.textContent = '₹18,000';
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
 </body>
 </html>
