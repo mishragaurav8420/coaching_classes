@@ -48,6 +48,35 @@
         header nav ul li a:hover {
             color: #f0f0f0;
         }
+        .hero {
+            background: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center/cover;
+            color: #fff;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+        }
+        .hero h1, .hero p {
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
         .about {
             padding: 50px 20px;
             max-width: 1200px;
@@ -65,6 +94,49 @@
             color: #666;
             max-width: 800px;
             margin: 0 auto 40px;
+        }
+        .expertise {
+            background-color: #fff;
+            padding: 50px 20px;
+            margin: 50px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .expertise h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+        .expertise .expertise-list {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .expertise .expertise-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .expertise .expertise-item:hover {
+            transform: translateY(-10px);
+        }
+        .expertise .expertise-item i {
+            font-size: 2em;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .expertise .expertise-item h4 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #333;
+        }
+        .expertise .expertise-item p {
+            font-size: 1em;
+            color: #666;
         }
         .team-members {
             display: flex;
@@ -105,6 +177,51 @@
             color: #007BFF;
             margin-top: 10px;
         }
+        .testimonials {
+            background-color: #fff;
+            padding: 50px 20px;
+            margin: 50px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .testimonials h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+        .testimonials .testimonial-list {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .testimonials .testimonial-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .testimonials .testimonial-item:hover {
+            transform: translateY(-10px);
+        }
+        .testimonials .testimonial-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .testimonials .testimonial-item h4 {
+            font-size: 1.2em;
+            margin: 10px 0;
+            color: #333;
+        }
+        .testimonials .testimonial-item p {
+            font-size: 1em;
+            color: #666;
+        }
         footer {
             background-color: #333;
             color: #fff;
@@ -131,12 +248,43 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Empowering Your Tech Journey</h1>
+        <p>We are a team of experienced tech professionals with <strong>3+ years of expertise</strong> in the industry. Our mission is to empower you with the latest technologies and help you advance your career.</p>
+    </section>
+
     <!-- About Section -->
     <section class="about">
         <h2>About Us</h2>
-        <p>We are a team of experienced tech professionals with <strong>3+ years of expertise</strong> in the industry. Our mission is to empower you with the latest technologies and help you advance your career.</p>
-        
-        <!-- Team Members -->
+        <p>At Tech Coaching, we believe in the power of education and mentorship to transform lives. As students ourselves, we understand the challenges you face and are here to guide you every step of the way.</p>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise">
+        <h3>Our Expertise</h3>
+        <div class="expertise-list">
+            <div class="expertise-item">
+                <i class="fas fa-laptop-code"></i>
+                <h4>Web Development</h4>
+                <p>We specialize in building responsive and dynamic websites using modern technologies like React, Angular, and Node.js.</p>
+            </div>
+            <div class="expertise-item">
+                <i class="fas fa-database"></i>
+                <h4>Data Science</h4>
+                <p>From data analysis to machine learning, we help you master the tools and techniques to unlock the power of data.</p>
+            </div>
+            <div class="expertise-item">
+                <i class="fas fa-cloud"></i>
+                <h4>Cloud Computing</h4>
+                <p>Learn to deploy and manage applications on AWS, Azure, and GCP with hands-on projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Members Section -->
+    <section class="about">
+        <h2>Our Team</h2>
         <div class="team-members">
             <div class="team-member">
                 <img src="images/gaurav.jpeg" alt="Gaurav">
@@ -155,6 +303,37 @@
                 <h3>Sunidhi</h3>
                 <p>Working at HCL</p>
                 <p class="expertise">Expertise: AWS, GCP, Cloud Technologies</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h3>What Our Students Say</h3>
+        <div class="testimonial-list">
+            <div class="team-member">
+                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" alt="Professional Girl 1">
+                <h3>Priya Sharma</h3>
+                <p>Working at Google</p>
+                <p class="expertise">Expertise: AI/ML, Python, Data Science</p>
+            </div>
+            <div class="team-member">
+                <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg" alt="Professional Girl 2">
+                <h3>Anjali Singh</h3>
+                <p>Working at Microsoft</p>
+                <p class="expertise">Expertise: Cloud Computing, DevOps</p>
+            </div>
+            <div class="team-member">
+                <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" alt="Professional Boy 1">
+                <h3>Rahul Verma</h3>
+                <p>Working at Amazon</p>
+                <p class="expertise">Expertise: Web Development, JavaScript</p>
+            </div>
+            <div class="team-member">
+                <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg" alt="Professional Boy 2">
+                <h3>Rohan Kapoor</h3>
+                <p>Working at Infosys</p>
+                <p class="expertise">Expertise: Cybersecurity, Networking</p>
             </div>
         </div>
     </section>
