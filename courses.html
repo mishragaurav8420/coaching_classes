@@ -16,7 +16,7 @@
             box-sizing: border-box;
             line-height: 1.6;
             color: #333;
-            background-color: #f9f9f9;
+            background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
         }
         header {
             background: linear-gradient(135deg, #007BFF, #00BFFF);
@@ -161,6 +161,33 @@
             cursor: pointer;
             color: #333;
         }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: #007BFF;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                width: 200px;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            header nav ul.active {
+                display: flex;
+            }
+            header nav ul li {
+                margin: 10px 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .course-list {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -184,7 +211,7 @@
     <section class="courses">
         <h2>Our Courses</h2>
         <div class="course-list">
-            <!-- Course 1 -->
+            <!-- Web Development -->
             <div class="course-item" onclick="openModal('web-development')">
                 <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Web Development">
                 <h3>Web Development</h3>
@@ -192,7 +219,7 @@
                 <div class="price">₹15,000</div>
                 <a href="contact.html?course=web-development" class="btn">Enroll Now</a>
             </div>
-            <!-- Course 2 -->
+            <!-- Data Science -->
             <div class="course-item" onclick="openModal('data-science')">
                 <img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Data Science">
                 <h3>Data Science</h3>
@@ -200,13 +227,37 @@
                 <div class="price">₹20,000</div>
                 <a href="contact.html?course=data-science" class="btn">Enroll Now</a>
             </div>
-            <!-- Course 3 -->
+            <!-- Cloud Computing -->
             <div class="course-item" onclick="openModal('cloud-computing')">
                 <img src="https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Cloud Computing">
                 <h3>Cloud Computing</h3>
                 <p>Learn to deploy and manage applications on AWS, Azure, and GCP with hands-on projects.</p>
                 <div class="price">₹18,000</div>
                 <a href="contact.html?course=cloud-computing" class="btn">Enroll Now</a>
+            </div>
+            <!-- DSA with Python -->
+            <div class="course-item" onclick="openModal('dsa-python')">
+                <img src="https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="DSA with Python">
+                <h3>DSA with Python</h3>
+                <p>Master Data Structures and Algorithms using Python with hands-on coding exercises and real-world problems.</p>
+                <div class="price">₹12,000</div>
+                <a href="contact.html?course=dsa-python" class="btn">Enroll Now</a>
+            </div>
+            <!-- DSA with Java -->
+            <div class="course-item" onclick="openModal('dsa-java')">
+                <img src="https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="DSA with Java">
+                <h3>DSA with Java</h3>
+                <p>Master Data Structures and Algorithms using Java with hands-on coding exercises and real-world problems.</p>
+                <div class="price">₹12,000</div>
+                <a href="contact.html?course=dsa-java" class="btn">Enroll Now</a>
+            </div>
+            <!-- Programming Languages -->
+            <div class="course-item" onclick="openModal('programming-languages')">
+                <img src="https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Programming Languages">
+                <h3>Programming Languages</h3>
+                <p>Learn programming languages like Python, Java, C++, and C from scratch with hands-on projects.</p>
+                <div class="price">₹10,000</div>
+                <a href="contact.html?course=programming-languages" class="btn">Enroll Now</a>
             </div>
         </div>
     </section>
@@ -254,6 +305,18 @@
                 modalTitle.textContent = 'Cloud Computing';
                 modalDescription.textContent = 'Learn to deploy and manage applications on AWS, Azure, and GCP with hands-on projects.';
                 modalPrice.textContent = '₹18,000';
+            } else if (course === 'dsa-python') {
+                modalTitle.textContent = 'DSA with Python';
+                modalDescription.textContent = 'Master Data Structures and Algorithms using Python with hands-on coding exercises and real-world problems.';
+                modalPrice.textContent = '₹12,000';
+            } else if (course === 'dsa-java') {
+                modalTitle.textContent = 'DSA with Java';
+                modalDescription.textContent = 'Master Data Structures and Algorithms using Java with hands-on coding exercises and real-world problems.';
+                modalPrice.textContent = '₹12,000';
+            } else if (course === 'programming-languages') {
+                modalTitle.textContent = 'Programming Languages';
+                modalDescription.textContent = 'Learn programming languages like Python, Java, C++, and C from scratch with hands-on projects.';
+                modalPrice.textContent = '₹10,000';
             }
 
             modal.style.display = 'flex';
