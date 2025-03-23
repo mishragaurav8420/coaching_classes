@@ -19,7 +19,7 @@
             background-color: #f9f9f9;
         }
         header {
-            background-color: #007BFF;
+            background: linear-gradient(135deg, #007BFF, #00BFFF);
             color: #fff;
             padding: 20px;
             display: flex;
@@ -60,35 +60,77 @@
             color: #007BFF;
             text-align: center;
         }
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
         .blog-post {
             background-color: #fff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .blog-post:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
         .blog-post h3 {
             font-size: 1.8em;
             margin-bottom: 10px;
             color: #007BFF;
         }
+        .blog-post .meta {
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .blog-post .meta span {
+            margin-right: 10px;
+        }
+        .blog-post .meta i {
+            margin-right: 5px;
+        }
+        .blog-post .author {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .blog-post .author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #007BFF;
+        }
+        .blog-post .author-info h4 {
+            margin: 0;
+            font-size: 1.1em;
+            color: #333;
+        }
+        .blog-post .author-info p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
         .blog-post p {
             font-size: 1.1em;
             color: #666;
+            margin-bottom: 20px;
         }
         .blog-post a {
             display: inline-block;
-            margin-top: 10px;
-            color: #007BFF;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
             text-decoration: none;
+            border-radius: 5px;
             font-weight: bold;
+            transition: background-color 0.3s ease;
         }
         .blog-post a:hover {
-            text-decoration: underline;
+            background-color: #0056b3;
         }
         footer {
             background-color: #333;
@@ -119,38 +161,60 @@
     <!-- Blog Section -->
     <section class="blog">
         <h2>Tech Coaching Blog</h2>
-        <div class="blog-post">
-            <h3>Top 5 Programming Languages in 2023</h3>
-            <p>Discover the most in-demand programming languages this year and why they are essential for your career growth.</p>
-            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="blog-post">
-            <h3>How to Start a Career in Data Science</h3>
-            <p>Learn the steps to break into the data science industry, including the skills you need and the best resources to get started.</p>
-            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="blog-post">
-            <h3>Mastering Cloud Computing: AWS, Azure, and GCP</h3>
-            <p>Explore the differences between AWS, Azure, and GCP, and learn how to choose the right cloud platform for your projects.</p>
-            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="blog-post">
-            <h3>Frontend vs Backend Development: Which is Right for You?</h3>
-            <p>Understand the key differences between frontend and backend development and decide which path suits your interests and skills.</p>
-            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="blog-post">
-            <h3>Top Tools for DevOps Engineers in 2023</h3>
-            <p>Discover the essential tools every DevOps engineer should know, including Terraform, Ansible, Docker, and Kubernetes.</p>
-            <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+        <div class="blog-posts">
+            <!-- Blog Post 1 -->
+            <div class="blog-post">
+                <h3>Top 5 Programming Languages in 2023</h3>
+                <div class="meta">
+                    <span><i class="fas fa-calendar"></i> October 10, 2023</span>
+                    <span><i class="fas fa-tag"></i> Programming</span>
+                </div>
+                <div class="author">
+                    <img src="images/gaurav.jpeg" alt="Gaurav">
+                    <div class="author-info">
+                        <h4>Gaurav</h4>
+                        <p>Python & Django Expert</p>
+                    </div>
+                </div>
+                <p>Discover the most in-demand programming languages this year and why they are essential for your career growth.</p>
+                <a href="blog-post-1.html">Read More</a>
+            </div>
+            <!-- Blog Post 2 -->
+            <div class="blog-post">
+                <h3>How to Start a Career in Data Science</h3>
+                <div class="meta">
+                    <span><i class="fas fa-calendar"></i> October 12, 2023</span>
+                    <span><i class="fas fa-tag"></i> Data Science</span>
+                </div>
+                <div class="author">
+                    <img src="images/sumukh.jpeg" alt="Sumukh">
+                    <div class="author-info">
+                        <h4>Sumukh</h4>
+                        <p>Angular & React Expert</p>
+                    </div>
+                </div>
+                <p>Learn the steps to break into the data science industry, including the skills you need and the best resources to get started.</p>
+                <a href="blog-post-2.html">Read More</a>
+            </div>
+            <!-- Blog Post 3 -->
+            <div class="blog-post">
+                <h3>Mastering Cloud Computing: AWS, Azure, and GCP</h3>
+                <div class="meta">
+                    <span><i class="fas fa-calendar"></i> October 15, 2023</span>
+                    <span><i class="fas fa-tag"></i> Cloud Computing</span>
+                </div>
+                <div class="author">
+                    <img src="images/sunidhi.jpeg" alt="Sunidhi">
+                    <div class="author-info">
+                        <h4>Sunidhi</h4>
+                        <p>Cloud & DevOps Expert</p>
+                    </div>
+                </div>
+                <p>Explore the differences between AWS, Azure, and GCP, and learn how to choose the right cloud platform for your projects.</p>
+                <a href="blog-post-3.html">Read More</a>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <!-- <footer>
-        <p>&copy; 2023 Tech Coaching. All rights reserved.</p>
-    </footer> -->
-
-    <script src="js/script.js"></script>
 </body>
 </html>
