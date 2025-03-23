@@ -62,7 +62,7 @@
         }
         .course-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
         .course-item {
@@ -71,43 +71,17 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: transform 0.3s ease;
+            cursor: pointer;
+            padding: 20px;
+            text-align: center;
         }
         .course-item:hover {
             transform: translateY(-10px);
         }
-        .course-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
         .course-item h3 {
             font-size: 1.5em;
-            margin: 20px 0 10px;
+            margin: 0;
             color: #007BFF;
-        }
-        .course-item p {
-            font-size: 1em;
-            color: #666;
-            padding: 0 20px 20px;
-        }
-        .course-item .price {
-            font-size: 1.2em;
-            color: #28a745;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .course-item .btn {
-            display: inline-block;
-            margin: 0 20px 20px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .course-item .btn:hover {
-            background-color: #0056b3;
         }
         footer {
             background: linear-gradient(135deg, #007BFF, #00BFFF);
@@ -213,51 +187,27 @@
         <div class="course-list">
             <!-- Web Development -->
             <div class="course-item" onclick="openModal('web-development')">
-                <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Web Development">
                 <h3>Web Development</h3>
-                <p>Learn to build responsive websites with HTML, CSS, JavaScript, and modern frameworks like React and Angular.</p>
-                <div class="price">₹15,000</div>
-                <a href="contact.html?course=web-development" class="btn">Enroll Now</a>
             </div>
             <!-- Data Science -->
             <div class="course-item" onclick="openModal('data-science')">
-                <img src="https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Data Science">
                 <h3>Data Science</h3>
-                <p>Master data analysis, machine learning, and data visualization using Python, R, and advanced tools.</p>
-                <div class="price">₹20,000</div>
-                <a href="contact.html?course=data-science" class="btn">Enroll Now</a>
             </div>
             <!-- Cloud Computing -->
             <div class="course-item" onclick="openModal('cloud-computing')">
-                <img src="https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Cloud Computing">
                 <h3>Cloud Computing</h3>
-                <p>Learn to deploy and manage applications on AWS, Azure, and GCP with hands-on projects.</p>
-                <div class="price">₹18,000</div>
-                <a href="contact.html?course=cloud-computing" class="btn">Enroll Now</a>
             </div>
             <!-- DSA with Python -->
             <div class="course-item" onclick="openModal('dsa-python')">
-                <img src="https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="DSA with Python">
                 <h3>DSA with Python</h3>
-                <p>Master Data Structures and Algorithms using Python with hands-on coding exercises and real-world problems.</p>
-                <div class="price">₹12,000</div>
-                <a href="contact.html?course=dsa-python" class="btn">Enroll Now</a>
             </div>
             <!-- DSA with Java -->
             <div class="course-item" onclick="openModal('dsa-java')">
-                <img src="https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="DSA with Java">
                 <h3>DSA with Java</h3>
-                <p>Master Data Structures and Algorithms using Java with hands-on coding exercises and real-world problems.</p>
-                <div class="price">₹12,000</div>
-                <a href="contact.html?course=dsa-java" class="btn">Enroll Now</a>
             </div>
             <!-- Programming Languages -->
             <div class="course-item" onclick="openModal('programming-languages')">
-                <img src="https://images.pexels.com/photos/4164418/pexels-photo-4164418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Programming Languages">
                 <h3>Programming Languages</h3>
-                <p>Learn programming languages like Python, Java, C++, and C from scratch with hands-on projects.</p>
-                <div class="price">₹10,000</div>
-                <a href="contact.html?course=programming-languages" class="btn">Enroll Now</a>
             </div>
         </div>
     </section>
