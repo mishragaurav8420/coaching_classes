@@ -20,12 +20,36 @@
             background-color: #007BFF;
             color: #fff;
             padding: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         header h1 {
             margin: 0;
-            font-size: 2em;
+            font-size: 1.8em;
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+        }
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        header nav ul li {
+            margin-left: 20px;
+        }
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        header nav ul li a:hover {
+            color: #ffdd57;
         }
         .hero {
             background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
@@ -116,18 +140,68 @@
             padding: 20px;
             margin-top: 50px;
         }
+        /* Responsive Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background-color: #fff;
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+                flex-direction: column;
+                background-color: #007BFF;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                width: 200px;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            header nav ul.active {
+                display: flex;
+            }
+            header nav ul li {
+                margin: 10px 0;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>TechJourney</h1>
+        <nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="courses.html"><i class="fas fa-book"></i> Courses</a></li>
+                <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    <section class="hero">
+    <section class="hero" id="home">
         <h2>Your Journey to Tech Excellence</h2>
         <p>Join our coaching program and unlock your potential in the world of technology.</p>
         <a href="#contact" class="cta-button">Get Started</a>
     </section>
-    <section class="content">
+    <section class="content" id="about">
         <h3>Why Choose TechJourney?</h3>
         <p>At TechJourney, we provide personalized guidance to help you achieve your tech goals. Whether you're a beginner or an experienced professional, our program is designed to help you succeed.</p>
     </section>
@@ -144,5 +218,13 @@
     <footer>
         <p>&copy; 2025 TechJourney. All rights reserved.</p>
     </footer>
+    <script>
+        // Toggle mobile menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
