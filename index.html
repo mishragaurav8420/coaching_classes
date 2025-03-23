@@ -115,91 +115,48 @@
         .slideshow img.active {
             opacity: 1;
         }
-        .about-me, .courses, .placement-guarantee {
+        .features, .testimonials, .events, .success-stories {
             padding: 50px 20px;
             background-color: #fff;
             text-align: center;
         }
-        .about-me h2, .courses h2, .placement-guarantee h2 {
+        .features h2, .testimonials h2, .events h2, .success-stories h2 {
             font-family: 'Open Sans', sans-serif;
             font-size: 2.5em;
             margin-bottom: 40px;
             color: #007BFF;
         }
-        .team-members {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        .team-member {
-            max-width: 300px;
-            text-align: center;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-        .team-member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #007BFF;
-        }
-        .team-member h3 {
-            font-size: 1.5em;
-            margin: 10px 0;
-            color: #333;
-        }
-        .team-member p {
-            font-size: 1em;
-            color: #666;
-        }
-        .courses-grid {
+        .features-grid, .testimonials-grid, .events-grid, .success-stories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .course-item {
-            background-color: #fff;
+        .feature-item, .testimonial-item, .event-item, .success-story-item {
+            background-color: #f9f9f9;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease;
         }
-        .course-item:hover {
+        .feature-item:hover, .testimonial-item:hover, .event-item:hover, .success-story-item:hover {
             transform: translateY(-10px);
         }
-        .course-item i {
+        .feature-item i, .event-item i {
             font-size: 3em;
             color: #007BFF;
             margin-bottom: 20px;
         }
-        .course-item h3 {
+        .feature-item h3, .testimonial-item h3, .event-item h3, .success-story-item h3 {
             font-size: 1.5em;
             margin-bottom: 10px;
             color: #333;
         }
-        .course-item p {
+        .feature-item p, .testimonial-item p, .event-item p, .success-story-item p {
             font-size: 1em;
             color: #666;
-        }
-        .placement-guarantee {
-            background-color: #f9f9f9;
-        }
-        .placement-guarantee p {
-            font-size: 1.2em;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
         }
         footer {
             background-color: #333;
@@ -213,30 +170,19 @@
 <body>
     <!-- Header -->
     <header>
-        <!-- Menu Icon (Hamburger) -->
-        <div class="menu-icon" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i> <!-- Font Awesome Hamburger Icon -->
+        <div class="logo">
+            <img src="images/logo.png" alt="Tech Coaching Logo">
         </div>
-
-        <!-- Navigation Menu -->
         <nav>
-            <ul id="nav-menu">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="courses.html"><i class="fas fa-book"></i> Courses</a></li>
-                <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
-                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
-
-    <script>
-        // JavaScript to toggle the menu on mobile
-        function toggleMenu() {
-            const navMenu = document.getElementById("nav-menu");
-            navMenu.classList.toggle("active");
-        }
-    </script>
 
     <!-- Hero Section with Slideshow -->
     <section class="hero">
@@ -256,81 +202,100 @@
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section class="about-me">
-        <h2>Meet Our Team</h2>
-        <div class="team-members">
-            <div class="team-member">
-                <img src="images/gaurav.jpeg" alt="Gaurav">
-                <h3>Gaurav</h3>
-                <p>Working at Pulse Pro</p>
-                <p>Expertise: Python, Django, Databases</p>
+    <!-- Key Features Section -->
+    <section class="features">
+        <h2>Why Choose Us?</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Expert Instructors</h3>
+                <p>Learn from industry professionals with years of experience in tech.</p>
             </div>
-            <div class="team-member">
-                <img src="images/sumukh.jpeg" alt="Sumukh">
-                <h3>Sumukh</h3>
-                <p>Working at Gemini Solutions Pvt. Ltd.</p>
-                <p>Expertise: Angular, React, JavaScript</p>
+            <div class="feature-item">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Hands-On Projects</h3>
+                <p>Gain practical experience with real-world projects and assignments.</p>
             </div>
-            <div class="team-member">
-                <img src="images/sunidhi.jpeg" alt="Sunidhi">
-                <h3>Sunidhi</h3>
-                <p>Working at HCL</p>
-                <p>
-                    <i class="fab fa-microsoft" style="color: #00A1F1; margin-right: 10px;"></i>
-                    <i class="fab fa-aws" style="color: #FF9900; margin-right: 10px;"></i>
-                    <i class="fab fa-google" style="color: #4285F4; margin-right: 10px;"></i>
-                    Cloud Technologies (Azure, AWS, GCP)
-                </p>
-                <p>
-                    <i class="fas fa-tools" style="color: #333; margin-right: 10px;"></i>
-                    Tools: Terraform, Ansible, PowerShell, Ansible Tower
-                </p>
+            <div class="feature-item">
+                <i class="fas fa-certificate"></i>
+                <h3>Certification</h3>
+                <p>Get certified and boost your career prospects.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-briefcase"></i>
+                <h3>Placement Assistance</h3>
+                <p>We provide 100% placement assistance to help you land your dream job.</p>
             </div>
         </div>
     </section>
 
-    <!-- Courses Section -->
-    <section class="courses">
-        <h2>Our Courses</h2>
-        <div class="courses-grid">
-            <div class="course-item">
-                <i class="fab fa-python"></i>
-                <h3>Python & Django</h3>
-                <p>Master Python programming and Django for web development.</p>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Students Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-item">
+                <i class="fas fa-user-graduate" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
+                <h3>Rahul Sharma</h3>
+                <p>"Tech Coaching helped me land my dream job as a web developer. The hands-on projects and mentorship were invaluable!"</p>
             </div>
-            <div class="course-item">
-                <i class="fab fa-angular"></i>
-                <h3>Angular</h3>
-                <p>Build dynamic and responsive web applications with Angular.</p>
+            <div class="testimonial-item">
+                <i class="fas fa-user-graduate" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
+                <h3>Priya Singh</h3>
+                <p>"The Data Science course was comprehensive and practical. I now feel confident working with real-world datasets."</p>
             </div>
-            <div class="course-item">
-                <i class="fab fa-react"></i>
-                <h3>React</h3>
-                <p>Create modern user interfaces with React.js.</p>
-            </div>
-            <div class="course-item">
-                <i class="fas fa-database"></i>
-                <h3>Databases</h3>
-                <p>Learn to design and manage databases like MySQL, PostgreSQL, and MongoDB.</p>
-            </div>
-            <div class="course-item">
-                <i class="fab fa-html5"></i>
-                <h3>HTML & CSS</h3>
-                <p>Build beautiful and responsive websites with HTML and CSS.</p>
-            </div>
-            <div class="course-item">
-                <i class="fab fa-js"></i>
-                <h3>JavaScript</h3>
-                <p>Add interactivity and dynamic features to your websites with JavaScript.</p>
+            <div class="testimonial-item">
+                <i class="fas fa-user-graduate" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
+                <h3>Ankit Patel</h3>
+                <p>"The Cloud Computing course gave me the skills to deploy and manage applications on AWS. Highly recommended!"</p>
             </div>
         </div>
     </section>
 
-    <!-- Placement Guarantee Section -->
-    <section class="placement-guarantee">
-        <h2>100% Placement Guarantee</h2>
-        <p>We are committed to your success. With our industry-aligned courses and personalized coaching, we guarantee 100% placement assistance to help you land your dream job in the tech industry.</p>
+    <!-- Upcoming Events Section -->
+    <section class="events">
+        <h2>Upcoming Events</h2>
+        <div class="events-grid">
+            <div class="event-item">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Web Development Workshop</h3>
+                <p>Join our hands-on workshop to learn the basics of web development.</p>
+                <p><strong>Date:</strong> October 15, 2023</p>
+            </div>
+            <div class="event-item">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Data Science Bootcamp</h3>
+                <p>Learn data analysis, machine learning, and visualization in this intensive bootcamp.</p>
+                <p><strong>Date:</strong> November 1, 2023</p>
+            </div>
+            <div class="event-item">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Cloud Computing Seminar</h3>
+                <p>Discover the power of cloud computing with AWS, Azure, and GCP.</p>
+                <p><strong>Date:</strong> November 20, 2023</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="success-stories">
+        <h2>Success Stories</h2>
+        <div class="success-stories-grid">
+            <div class="success-story-item">
+                <i class="fas fa-user-graduate" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
+                <h3>From Beginner to Developer</h3>
+                <p>Rahul went from knowing nothing about coding to landing a job as a full-stack developer in just 6 months.</p>
+            </div>
+            <div class="success-story-item">
+                <i class="fas fa-chart-line" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
+                <h3>Data Science Career Boost</h3>
+                <p>Priya transitioned from a non-tech background to a data scientist role after completing our course.</p>
+            </div>
+            <div class="success-story-item">
+                <i class="fas fa-cloud" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
+                <h3>Cloud Engineer Success</h3>
+                <p>Ankit became a certified cloud engineer and now works at a top tech company.</p>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
