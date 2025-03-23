@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Tech Coaching</title>
-    <!-- Add Font Awesome for icons -->
+    <title>TechJourney - Your Journey to Tech Excellence</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Add Google Fonts for better typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -22,70 +20,42 @@
             background-color: #007BFF;
             color: #fff;
             padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        header .logo img {
-            height: 50px;
-        }
-        header nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        header nav ul li {
-            margin-left: 20px;
-        }
-        header nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        header nav ul li a:hover {
-            color: #f0f0f0;
-        }
-        .contact {
-            padding: 50px 20px;
-            max-width: 600px;
-            margin: 0 auto;
             text-align: center;
-        }
-        .contact h2 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #007BFF;
-        }
-        .contact form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .contact label {
-            display: block;
-            font-size: 1.1em;
-            margin-bottom: 5px;
-            color: #555;
-            text-align: left;
+        header h1 {
+            margin: 0;
+            font-size: 2em;
         }
-        .contact input, .contact textarea {
-            width: 100%;
-            padding: 10px;
+        .hero {
+            background: url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
+            color: #fff;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+        }
+        .hero h2, .hero p, .hero .cta-button {
+            position: relative;
+            z-index: 1;
+        }
+        .hero h2 {
+            font-size: 3em;
             margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1em;
         }
-        .contact textarea {
-            resize: vertical;
-            height: 150px;
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
         }
-        .contact button {
+        .hero .cta-button {
             background-color: #007BFF;
             color: #fff;
             padding: 10px 20px;
@@ -93,22 +63,51 @@
             border-radius: 5px;
             font-size: 1.1em;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            text-decoration: none;
         }
-        .contact button:hover {
-            background-color: #0056b3;
+        .content {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
-        .contact .social-links {
-            margin-top: 30px;
-        }
-        .contact .social-links a {
+        .content h3 {
+            font-size: 2em;
             color: #007BFF;
-            font-size: 1.5em;
-            margin: 0 10px;
-            transition: color 0.3s ease;
+            margin-bottom: 20px;
         }
-        .contact .social-links a:hover {
-            color: #0056b3;
+        .content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .contact {
+            background-color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+        .contact .cta-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .contact .contact-info {
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        .contact .contact-info i {
+            margin-right: 10px;
+            color: #007BFF;
         }
         footer {
             background-color: #333;
@@ -120,53 +119,30 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Tech Coaching Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+        <h1>TechJourney</h1>
     </header>
-
-    <!-- Contact Section -->
-    <section class="contact">
+    <section class="hero">
+        <h2>Your Journey to Tech Excellence</h2>
+        <p>Join our coaching program and unlock your potential in the world of technology.</p>
+        <a href="#contact" class="cta-button">Get Started</a>
+    </section>
+    <section class="content">
+        <h3>Why Choose TechJourney?</h3>
+        <p>At TechJourney, we provide personalized guidance to help you achieve your tech goals. Whether you're a beginner or an experienced professional, our program is designed to help you succeed.</p>
+    </section>
+    <section class="contact" id="contact">
         <h2>Contact Us</h2>
-        <form id="contact-form" action="https://formspree.io/f/xjvqjqjq" method="POST">
-            <label for="name"><i class="fas fa-user"></i> Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="email"><i class="fas fa-envelope"></i> Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="message"><i class="fas fa-comment"></i> Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            
-            <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
-        </form>
-
-        <!-- Social Links -->
-        <div class="social-links">
-            <p>Follow us on:</p>
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <p>Have any questions? Fill out the form below!</p>
+        <a href="https://forms.gle/478og2bhWDag3Cdc9" target="_blank" class="cta-button">Open Google Form</a>
+        <div class="contact-info">
+            <p><i class="fas fa-phone"></i> <strong>Phone:</strong> 6387823660</p>
+            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> techjourney.tech.engineers@gmail.com</p>
+            <p><i class="fab fa-linkedin"></i> <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sumukh-panday-19144a216/" target="_blank">Sumukh Panday</a></p>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2023 Tech Coaching. All rights reserved.</p>
+        <p>&copy; 2025 TechJourney. All rights reserved.</p>
     </footer>
-
-    <script src="js/script.js"></script>
 </body>
 </html>
