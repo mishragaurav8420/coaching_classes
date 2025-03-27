@@ -4,217 +4,511 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Tech Coaching</title>
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Add Google Fonts for better typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-dark: #333333;
+            --gray-medium: #666666;
+            --gray-light: #f5f5f5;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
         }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Header Styles */
         header {
-            background: linear-gradient(135deg, #007BFF, #00BFFF);
-            color: #fff;
-            padding: 20px;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        header .logo img {
+        
+        .logo img {
             height: 50px;
+            filter: invert(1);
         }
-        header nav ul {
+        
+        nav ul {
+            display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
-            display: flex;
         }
-        header nav ul li {
-            margin-left: 20px;
+        
+        nav li {
+            margin-left: 2rem;
         }
-        header nav ul li a {
-            color: #fff;
+        
+        nav a {
+            color: var(--white);
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
         }
-        header nav ul li a:hover {
-            color: #f0f0f0;
+        
+        nav a:hover {
+            color: #ccc;
         }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--white);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Blog Section */
         .blog {
-            padding: 50px 20px;
+            padding: 8rem 2rem 4rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        .blog h2 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            color: #007BFF;
+        
+        .section-title {
             text-align: center;
+            margin-bottom: 4rem;
         }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--black);
+            margin: 1rem auto;
+        }
+        
         .blog-posts {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
         }
+        
         .blog-post {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+        
         .blog-post:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-        .blog-post h3 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            color: #007BFF;
+        
+        .post-image {
+            height: 200px;
+            overflow: hidden;
         }
-        .blog-post .meta {
-            font-size: 0.9em;
-            color: #888;
-            margin-bottom: 10px;
+        
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
         }
-        .blog-post .meta span {
-            margin-right: 10px;
+        
+        .blog-post:hover .post-image img {
+            transform: scale(1.05);
         }
-        .blog-post .meta i {
-            margin-right: 5px;
+        
+        .post-content {
+            padding: 2rem;
         }
-        .blog-post .author {
+        
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+        }
+        
+        .post-tag {
+            display: inline-block;
+            background: var(--gray-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+        }
+        
+        .post-author {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin: 1.5rem 0;
         }
-        .blog-post .author img {
+        
+        .post-author img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            margin-right: 10px;
-            border: 2px solid #007BFF;
+            object-fit: cover;
+            border: 2px solid var(--black);
+            margin-right: 1rem;
         }
-        .blog-post .author-info h4 {
+        
+        .author-info h4 {
             margin: 0;
-            font-size: 1.1em;
-            color: #333;
+            font-size: 1rem;
         }
-        .blog-post .author-info p {
+        
+        .author-info p {
             margin: 0;
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.9rem;
+            color: var(--gray-medium);
         }
-        .blog-post p {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 20px;
+        
+        .post-excerpt {
+            margin: 1.5rem 0;
+            color: var(--gray-dark);
         }
-        .blog-post a {
+        
+        .read-more {
             display: inline-block;
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
+            padding: 0.8rem 1.5rem;
+            background: var(--black);
+            color: var(--white);
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.3s;
         }
-        .blog-post a:hover {
-            background-color: #0056b3;
+        
+        .read-more:hover {
+            background: var(--gray-dark);
         }
-        footer {
-            background-color: #333;
-            color: #fff;
+        
+        /* Newsletter */
+        .newsletter {
+            background: var(--gray-light);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+        }
+        
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-btn {
+            padding: 0 2rem;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .blog {
+                padding: 6rem 1rem 3rem;
+            }
+            
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 4px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-btn {
+                border-radius: 4px;
+                padding: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Tech Coaching Logo">
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Tech Coaching Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <!-- Blog Section -->
     <section class="blog">
-        <h2>Tech Coaching Blog</h2>
+        <div class="section-title">
+            <h2>Tech Insights & Tutorials</h2>
+            <p>Expert knowledge from industry professionals</p>
+        </div>
+        
         <div class="blog-posts">
             <!-- Blog Post 1 -->
-            <div class="blog-post">
-                <h3>Top 5 Programming Languages in 2023</h3>
-                <div class="meta">
-                    <span><i class="fas fa-calendar"></i> October 10, 2023</span>
-                    <span><i class="fas fa-tag"></i> Programming</span>
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Programming Languages">
                 </div>
-                <div class="author">
-                    <img src="images/gaurav.jpeg" alt="Gaurav">
-                    <div class="author-info">
-                        <h4>Gaurav</h4>
-                        <p>Python & Django Expert</p>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> October 10, 2023</span>
+                        <span><i class="far fa-clock"></i> 8 min read</span>
                     </div>
+                    <h3>Top 5 Programming Languages in 2023</h3>
+                    <div>
+                        <span class="post-tag">Programming</span>
+                        <span class="post-tag">Career</span>
+                    </div>
+                    <div class="post-author">
+                        <img src="images/gaurav.jpeg" alt="Gaurav">
+                        <div class="author-info">
+                            <h4>Gaurav Sharma</h4>
+                            <p>Senior Python Architect</p>
+                        </div>
+                    </div>
+                    <p class="post-excerpt">In this comprehensive guide, we analyze the most in-demand programming languages of 2023 based on job market trends, salary data, and industry growth projections. Learn why Python continues to dominate, how Rust is gaining traction, and which languages are best for your career goals.</p>
+                    <a href="blog-post-1.html" class="read-more">Continue Reading</a>
                 </div>
-                <p>Discover the most in-demand programming languages this year and why they are essential for your career growth.</p>
-                <a href="blog-post-1.html">Read More</a>
-            </div>
+            </article>
+            
             <!-- Blog Post 2 -->
-            <div class="blog-post">
-                <h3>How to Start a Career in Data Science</h3>
-                <div class="meta">
-                    <span><i class="fas fa-calendar"></i> October 12, 2023</span>
-                    <span><i class="fas fa-tag"></i> Data Science</span>
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Data Science">
                 </div>
-                <div class="author">
-                    <img src="images/sumukh.jpeg" alt="Sumukh">
-                    <div class="author-info">
-                        <h4>Sumukh</h4>
-                        <p>Angular & React Expert</p>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> October 12, 2023</span>
+                        <span><i class="far fa-clock"></i> 12 min read</span>
                     </div>
+                    <h3>How to Start a Career in Data Science</h3>
+                    <div>
+                        <span class="post-tag">Data Science</span>
+                        <span class="post-tag">Career</span>
+                    </div>
+                    <div class="post-author">
+                        <img src="images/sumukh.jpeg" alt="Sumukh">
+                        <div class="author-info">
+                            <h4>Sumukh Verma</h4>
+                            <p>Lead Data Scientist</p>
+                        </div>
+                    </div>
+                    <p class="post-excerpt">Breaking into data science requires more than just technical skills. This step-by-step guide covers the essential skills you need, portfolio projects that impress employers, and strategies for transitioning from other fields. Includes real-world case studies from professionals who successfully made the switch.</p>
+                    <a href="blog-post-2.html" class="read-more">Continue Reading</a>
                 </div>
-                <p>Learn the steps to break into the data science industry, including the skills you need and the best resources to get started.</p>
-                <a href="blog-post-2.html">Read More</a>
-            </div>
+            </article>
+            
             <!-- Blog Post 3 -->
-            <div class="blog-post">
-                <h3>Mastering Cloud Computing: AWS, Azure, and GCP</h3>
-                <div class="meta">
-                    <span><i class="fas fa-calendar"></i> October 15, 2023</span>
-                    <span><i class="fas fa-tag"></i> Cloud Computing</span>
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Cloud Computing">
                 </div>
-                <div class="author">
-                    <img src="images/sunidhi.jpeg" alt="Sunidhi">
-                    <div class="author-info">
-                        <h4>Sunidhi</h4>
-                        <p>Cloud & DevOps Expert</p>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> October 15, 2023</span>
+                        <span><i class="far fa-clock"></i> 10 min read</span>
                     </div>
+                    <h3>Mastering Cloud Computing: AWS vs Azure vs GCP</h3>
+                    <div>
+                        <span class="post-tag">Cloud</span>
+                        <span class="post-tag">DevOps</span>
+                    </div>
+                    <div class="post-author">
+                        <img src="images/sunidhi.jpeg" alt="Sunidhi">
+                        <div class="author-info">
+                            <h4>Sunidhi Patel</h4>
+                            <p>Cloud Solutions Architect</p>
+                        </div>
+                    </div>
+                    <p class="post-excerpt">Our comprehensive comparison of AWS, Azure, and Google Cloud Platform helps you understand the strengths of each provider. Learn which certifications are most valuable, cost optimization strategies, and real-world deployment patterns from projects serving millions of users.</p>
+                    <a href="blog-post-3.html" class="read-more">Continue Reading</a>
                 </div>
-                <p>Explore the differences between AWS, Azure, and GCP, and learn how to choose the right cloud platform for your projects.</p>
-                <a href="blog-post-3.html">Read More</a>
-            </div>
+            </article>
+            
+            <!-- Blog Post 4 -->
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2045&q=80" alt="Web Development">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> October 18, 2023</span>
+                        <span><i class="far fa-clock"></i> 15 min read</span>
+                    </div>
+                    <h3>Modern Web Development: React vs Angular vs Vue</h3>
+                    <div>
+                        <span class="post-tag">Web Dev</span>
+                        <span class="post-tag">Frameworks</span>
+                    </div>
+                    <div class="post-author">
+                        <img src="images/sumukh.jpeg" alt="Sumukh">
+                        <div class="author-info">
+                            <h4>Sumukh Verma</h4>
+                            <p>Frontend Architect</p>
+                        </div>
+                    </div>
+                    <p class="post-excerpt">An in-depth technical comparison of the three most popular JavaScript frameworks. Includes performance benchmarks, learning curves, ecosystem analysis, and recommendations for different project types. Plus: when to choose Svelte or plain JavaScript instead.</p>
+                    <a href="blog-post-4.html" class="read-more">Continue Reading</a>
+                </div>
+            </article>
+            
+            <!-- Blog Post 5 -->
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1655720828012-585b4245fb14?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="AI">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> October 22, 2023</span>
+                        <span><i class="far fa-clock"></i> 20 min read</span>
+                    </div>
+                    <h3>Practical AI Applications for Developers</h3>
+                    <div>
+                        <span class="post-tag">AI</span>
+                        <span class="post-tag">Machine Learning</span>
+                    </div>
+                    <div class="post-author">
+                        <img src="images/gaurav.jpeg" alt="Gaurav">
+                        <div class="author-info">
+                            <h4>Gaurav Sharma</h4>
+                            <p>AI Research Lead</p>
+                        </div>
+                    </div>
+                    <p class="post-excerpt">Beyond the hype: real-world AI applications you can implement today. Learn how to integrate pre-trained models into your applications, fine-tune them for specific tasks, and deploy them at scale. Includes code samples for common use cases in various industries.</p>
+                    <a href="blog-post-5.html" class="read-more">Continue Reading</a>
+                </div>
+            </article>
+            
+            <!-- Blog Post 6 -->
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Cybersecurity">
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> October 25, 2023</span>
+                        <span><i class="far fa-clock"></i> 18 min read</span>
+                    </div>
+                    <h3>Essential Cybersecurity Practices for Developers</h3>
+                    <div>
+                        <span class="post-tag">Security</span>
+                        <span class="post-tag">Best Practices</span>
+                    </div>
+                    <div class="post-author">
+                        <img src="images/sunidhi.jpeg" alt="Sunidhi">
+                        <div class="author-info">
+                            <h4>Sunidhi Patel</h4>
+                            <p>Security Specialist</p>
+                        </div>
+                    </div>
+                    <p class="post-excerpt">Security can't be an afterthought. This guide covers fundamental security principles every developer should know, common vulnerabilities to avoid, and tools to secure your applications. Includes a checklist for security audits and penetration testing basics.</p>
+                    <a href="blog-post-6.html" class="read-more">Continue Reading</a>
+                </div>
+            </article>
+        </div>
+        
+        <div class="newsletter">
+            <h3>Stay Updated with Tech Insights</h3>
+            <p>Subscribe to our newsletter for the latest tutorials, industry trends, and exclusive content</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Ready to take your tech skills to the next level?</p>
+            <a href="courses.html" class="read-more" style="margin-top: 1rem;">Explore Our Courses</a>
+            <div class="copyright">
+                <p>&copy; 2025 Tech Coaching. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
