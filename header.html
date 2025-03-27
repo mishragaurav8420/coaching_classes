@@ -1,3 +1,4 @@
+<!-- header.html -->
 <header>
     <div class="header-container">
         <div class="logo">
@@ -18,3 +19,16 @@
         </div>
     </div>
 </header>
+
+<script>
+    // Mobile menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('nav');
+        
+        toggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+    });
+</script>
