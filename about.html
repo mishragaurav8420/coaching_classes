@@ -4,345 +4,615 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Tech Coaching</title>
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Add Google Fonts for better typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-dark: #333333;
+            --gray-medium: #666666;
+            --gray-light: #f5f5f5;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
         }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Header Styles */
         header {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 20px;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        header .logo img {
+        
+        .logo img {
             height: 50px;
+            filter: invert(1);
         }
-        header nav ul {
+        
+        nav ul {
+            display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
-            display: flex;
         }
-        header nav ul li {
-            margin-left: 20px;
+        
+        nav li {
+            margin-left: 2rem;
         }
-        header nav ul li a {
-            color: #fff;
+        
+        nav a {
+            color: var(--white);
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        header nav ul li a:hover {
-            color: #f0f0f0;
-        }
-        .hero {
-            background: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center/cover;
-            color: #fff;
-            padding: 100px 20px;
-            text-align: center;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
             position: relative;
         }
+        
+        nav a:hover {
+            color: #ccc;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--white);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+            text-align: center;
+        }
+        
         .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-        }
-        .hero h1, .hero p {
-            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5));
             z-index: 1;
         }
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.2em;
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
             max-width: 800px;
-            margin: 0 auto;
+            padding: 2rem;
         }
-        .about {
-            padding: 50px 20px;
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--white);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .section-dark {
+            background-color: var(--gray-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--black);
+            margin: 1rem auto;
+        }
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
         }
-        .about h2 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #007BFF;
-        }
-        .about p {
-            font-size: 1.1em;
-            color: #666;
+        
+        /* About Content */
+        .about-content {
             max-width: 800px;
-            margin: 0 auto 40px;
-        }
-        .expertise {
-            background-color: #fff;
-            padding: 50px 20px;
-            margin: 50px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .expertise h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #007BFF;
-        }
-        .expertise .expertise-list {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        .expertise .expertise-item {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
+            margin: 0 auto;
             text-align: center;
-            transition: transform 0.3s ease;
         }
-        .expertise .expertise-item:hover {
+        
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--gray-dark);
+        }
+        
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+        }
+        
+        /* Expertise */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .expertise-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .expertise-item:hover {
             transform: translateY(-10px);
         }
-        .expertise .expertise-item i {
-            font-size: 2em;
-            color: #007BFF;
-            margin-bottom: 10px;
+        
+        .expertise-icon {
+            font-size: 3rem;
+            color: var(--black);
+            margin-bottom: 1.5rem;
         }
-        .expertise .expertise-item h4 {
-            font-size: 1.5em;
-            margin: 10px 0;
-            color: #333;
+        
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
-        .expertise .expertise-item p {
-            font-size: 1em;
-            color: #666;
-        }
-        .team-members {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
+        
         .team-member {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
+        
         .team-member:hover {
             transform: translateY(-10px);
         }
+        
         .team-member img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #007BFF;
+            border: 3px solid var(--black);
+            margin-bottom: 1.5rem;
         }
+        
         .team-member h3 {
-            font-size: 1.5em;
-            margin: 10px 0;
-            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
         }
-        .team-member p {
-            font-size: 1em;
-            color: #666;
+        
+        .team-member .position {
+            color: var(--gray-medium);
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
+        
         .team-member .expertise {
-            font-size: 0.9em;
-            color: #007BFF;
-            margin-top: 10px;
+            color: var(--black);
+            font-style: italic;
+            margin-bottom: 1.5rem;
         }
-        .testimonials {
-            background-color: #fff;
-            padding: 50px 20px;
-            margin: 50px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        
+        .team-member .bio {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
         }
-        .testimonials h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #007BFF;
-        }
-        .testimonials .testimonial-list {
+        
+        .social-links {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
+            gap: 1rem;
         }
-        .testimonials .testimonial-item {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .testimonials .testimonial-item:hover {
-            transform: translateY(-10px);
-        }
-        .testimonials .testimonial-item img {
-            width: 100px;
-            height: 100px;
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 10px;
+            background: var(--gray-light);
+            color: var(--black);
+            transition: all 0.3s;
         }
-        .testimonials .testimonial-item h4 {
-            font-size: 1.2em;
-            margin: 10px 0;
-            color: #333;
+        
+        .social-links a:hover {
+            background: var(--black);
+            color: var(--white);
         }
-        .testimonials .testimonial-item p {
-            font-size: 1em;
-            color: #666;
+        
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
+        
+        .testimonial-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial-item::before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: 0;
+            left: 1rem;
+            line-height: 1;
+            color: rgba(0,0,0,0.1);
+            font-family: serif;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+            background: var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
         footer {
-            background-color: #333;
-            color: #fff;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Tech Coaching Logo">
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Tech Coaching Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Empowering Your Tech Journey</h1>
-        <p>We are a team of experienced tech professionals with <strong>3+ years of expertise</strong> in the industry. Our mission is to empower you with the latest technologies and help you advance your career.</p>
+    <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')">
+        <div class="hero-content">
+            <h1>Mastering Technology Through Excellence</h1>
+            <p>With over a decade of combined industry experience, our team of distinguished professionals is dedicated to transforming your technical skills into career success.</p>
+        </div>
     </section>
 
     <!-- About Section -->
-    <section class="about">
-        <h2>About Us</h2>
-        <p>At Tech Coaching, we believe in the power of education and mentorship to transform lives. As students ourselves, we understand the challenges you face and are here to guide you every step of the way.</p>
-    </section>
-
-    <!-- Expertise Section -->
-    <section class="expertise">
-        <h3>Our Expertise</h3>
-        <div class="expertise-list">
-            <div class="expertise-item">
-                <i class="fas fa-laptop-code"></i>
-                <h4>Web Development</h4>
-                <p>We specialize in building responsive and dynamic websites using modern technologies like React, Angular, and Node.js.</p>
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+                <p>From industry leaders to your personal mentors</p>
             </div>
-            <div class="expertise-item">
-                <i class="fas fa-database"></i>
-                <h4>Data Science</h4>
-                <p>From data analysis to machine learning, we help you master the tools and techniques to unlock the power of data.</p>
+            <div class="about-content">
+                <p>Founded in 2020 by a group of senior tech professionals, Tech Coaching was born from the realization that quality technical education should be accessible, practical, and taught by those who have mastered their craft in real-world environments.</p>
+                <p>What began as weekend mentoring sessions has grown into a premier tech education platform, having trained over 5,000 students who now work at top companies worldwide.</p>
             </div>
-            <div class="expertise-item">
-                <i class="fas fa-cloud"></i>
-                <h4>Cloud Computing</h4>
-                <p>Learn to deploy and manage applications on AWS, Azure, and GCP with hands-on projects.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>Years Industry Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5,000+</h3>
+                    <p>Students Trained</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100+</h3>
+                    <p>Corporate Clients</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Career Success Rate</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Members Section -->
-    <section class="about">
-        <h2>Our Team</h2>
-        <div class="team-members">
-            <div class="team-member">
-                <img src="images/gaurav.jpeg" alt="Gaurav">
-                <h3>Gaurav</h3>
-                <p>Working at Pulse Pro</p>
-                <p class="expertise">Expertise: Python, Django, Databases</p>
+    <!-- Expertise Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Expertise</h2>
+                <p>Specialized knowledge from industry veterans</p>
             </div>
-            <div class="team-member">
-                <img src="images/sumukh.jpeg" alt="Sumukh">
-                <h3>Sumukh</h3>
-                <p>Working at Gemini Solutions Pvt. Ltd.</p>
-                <p class="expertise">Expertise: Angular, React, JavaScript</p>
+            <div class="expertise-grid">
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Full-Stack Development</h3>
+                    <p>Master modern web development with our comprehensive curriculum covering React, Node.js, and cutting-edge frameworks.</p>
+                    <p><strong>10+ years</strong> building enterprise applications</p>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Data Science & AI</h3>
+                    <p>From fundamental statistics to advanced neural networks, learn the complete data science lifecycle from practitioners.</p>
+                    <p><strong>Published researchers</strong> in machine learning</p>
+                </div>
+                <div class="expertise-item">
+                    <div class="expertise-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Architecture</h3>
+                    <p>Design and deploy scalable cloud solutions with guidance from certified AWS, Azure, and GCP architects.</p>
+                    <p><strong>Managed infrastructures</strong> serving millions</p>
+                </div>
             </div>
-            <div class="team-member">
-                <img src="images/sunidhi.jpeg" alt="Sunidhi">
-                <h3>Sunidhi</h3>
-                <p>Working at HCL</p>
-                <p class="expertise">Expertise: AWS, GCP, Cloud Technologies</p>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Master Instructors</h2>
+                <p>Industry veterans with proven expertise</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="images/gaurav.jpeg" alt="Gaurav">
+                    <h3>Gaurav Sharma</h3>
+                    <p class="position">Senior Architect at Pulse Pro</p>
+                    <p class="expertise">Python | Django | Database Design</p>
+                    <p class="bio">With 12 years of experience designing high-performance systems, Gaurav has optimized databases serving over 10 million daily users. Certified PostgreSQL and MongoDB expert.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/sumukh.jpeg" alt="Sumukh">
+                    <h3>Sumukh Verma</h3>
+                    <p class="position">Lead Frontend Engineer at Gemini Solutions</p>
+                    <p class="expertise">React | Angular | TypeScript</p>
+                    <p class="bio">Former Google engineer with 9 years experience building complex UIs. Contributor to open-source projects with 5,000+ GitHub stars. Specializes in performance optimization.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="images/sunidhi.jpeg" alt="Sunidhi">
+                    <h3>Sunidhi Patel</h3>
+                    <p class="position">Cloud Solutions Architect at HCL</p>
+                    <p class="expertise">AWS | Azure | Kubernetes</p>
+                    <p class="bio">Triple-certified cloud professional with 8 years experience designing fault-tolerant systems. Former lead architect for Fortune 500 company migration to cloud.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
-        <h3>What Our Students Say</h3>
-        <div class="testimonial-list">
-            <div class="team-member">
-                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg" alt="Professional Girl 1">
-                <h3>Priya Sharma</h3>
-                <p>Working at Google</p>
-                <p class="expertise">Expertise: AI/ML, Python, Data Science</p>
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Where our students are now</p>
             </div>
-            <div class="team-member">
-                <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg" alt="Professional Girl 2">
-                <h3>Anjali Singh</h3>
-                <p>Working at Microsoft</p>
-                <p class="expertise">Expertise: Cloud Computing, DevOps</p>
-            </div>
-            <div class="team-member">
-                <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" alt="Professional Boy 1">
-                <h3>Rahul Verma</h3>
-                <p>Working at Amazon</p>
-                <p class="expertise">Expertise: Web Development, JavaScript</p>
-            </div>
-            <div class="team-member">
-                <img src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg" alt="Professional Boy 2">
-                <h3>Rohan Kapoor</h3>
-                <p>Working at Infosys</p>
-                <p class="expertise">Expertise: Cybersecurity, Networking</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"After completing the Full-Stack program, I went from junior developer to team lead in just 18 months. The architecture patterns I learned are now standard across our engineering department."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PS</div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Engineering Lead, Google</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"The Data Science mentorship program completely transformed my career. I went from business analyst to heading our AI division, implementing models that increased revenue by 30%."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <h4>Anjali Singh</h4>
+                            <p>AI Director, Microsoft</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>"As a career changer, the Cloud Engineering bootcamp gave me the skills and confidence to land a senior position at AWS. The hands-on projects were exactly what hiring managers wanted to see."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RV</div>
+                        <div class="author-info">
+                            <h4>Rahul Verma</h4>
+                            <p>Solutions Architect, Amazon</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <!-- <footer>
-        <p>&copy; 2023 Tech Coaching. All rights reserved.</p>
-    </footer> -->
-
-    <script src="js/script.js"></script>
+    <footer>
+        <div class="footer-content">
+            <p>Ready to transform your career with guidance from industry masters?</p>
+            <a href="contact.html" class="btn" style="background: var(--white); color: var(--black); margin-top: 2rem;">Get Started Today</a>
+            <div class="copyright">
+                <p>&copy; 2025 Tech Coaching. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
