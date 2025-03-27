@@ -4,54 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Coaching - Home</title>
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Add Google Fonts for better typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-dark: #333333;
+            --gray-medium: #666666;
+            --gray-light: #f5f5f5;
+        }
+        
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            line-height: 1.6;
-            color: #333;
+            color: var(--black);
+            background-color: var(--white);
+            line-height: 1.7;
         }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Header Styles */
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
+            background-color: var(--black);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        header .logo img {
+        
+        .logo img {
             height: 50px;
+            filter: invert(1);
         }
-        header nav ul {
+        
+        nav ul {
+            display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
-            display: flex;
         }
-        header nav ul li {
-            margin-left: 20px;
+        
+        nav li {
+            margin-left: 2rem;
         }
-        header nav ul li a {
-            color: #fff;
+        
+        nav a {
+            color: var(--white);
             text-decoration: none;
-            font-weight: bold;
-        }
-        .hero {
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
             position: relative;
+        }
+        
+        nav a:hover {
+            color: #ccc;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--white);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section - Updated for better image handling */
+        .hero {
             height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
+            position: relative;
             overflow: hidden;
+            margin-top: 80px;
         }
+        
         .hero::before {
             content: '';
             position: absolute;
@@ -59,267 +111,734 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3));
             z-index: 1;
         }
+        
         .hero-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
-            padding: 20px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            color: var(--white);
         }
-        .hero-content h1 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 3.5em;
-            margin-bottom: 20px;
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font size */
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
-        .hero-content .subtitle {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+        
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem); /* Responsive font size */
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .hero-content p {
-            font-size: 1.1em;
-            margin-bottom: 30px;
-        }
+        
         .btn {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--white);
+            color: var(--black);
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 2px solid var(--white);
+            margin: 0 10px;
         }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+        }
+        
         .btn:hover {
-            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
+        
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--black);
+        }
+        
+        /* Updated Slideshow Styles */
         .slideshow {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
             overflow: hidden;
         }
+        
         .slideshow img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
             position: absolute;
-            top: 0;
-            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1.5s ease-in-out;
+            will-change: opacity;
         }
+        
         .slideshow img.active {
             opacity: 1;
+            z-index: 1;
         }
-        .features, .testimonials, .events, .success-stories {
-            padding: 50px 20px;
-            background-color: #fff;
+        
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
             text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
         }
-        .features h2, .testimonials h2, .events h2, .success-stories h2 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            color: #007BFF;
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
-        .features-grid, .testimonials-grid, .events-grid, .success-stories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--black);
+            margin: 1rem auto;
+        }
+        
+        .container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        .feature-item, .testimonial-item, .event-item, .success-story-item {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
+        
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
-        .feature-item:hover, .testimonial-item:hover, .event-item:hover, .success-story-item:hover {
+        
+        .feature-item {
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+        
+        .feature-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-        .feature-item i, .event-item i {
-            font-size: 3em;
-            color: #007BFF;
-            margin-bottom: 20px;
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--black);
         }
-        .feature-item h3, .testimonial-item h3, .event-item h3, .success-story-item h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #333;
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--gray-light);
         }
-        .feature-item p, .testimonial-item p, .event-item p, .success-story-item p {
-            font-size: 1em;
-            color: #666;
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
-        footer {
-            background-color: #333;
-            color: #fff;
+        
+        .testimonial-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial-item::before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            top: 0;
+            left: 1rem;
+            line-height: 1;
+            color: rgba(0,0,0,0.1);
+            font-family: serif;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+            background: var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background-color: var(--black);
+            color: var(--white);
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+            padding: 4rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+        
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        /* Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .event-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .event-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .event-item:hover .event-image img {
+            transform: scale(1.1);
+        }
+        
+        .event-details {
+            padding: 1.5rem;
+        }
+        
+        .event-date {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background-color: var(--gray-light);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .newsletter-btn {
+            padding: 0 2rem;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background: var(--gray-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+            filter: invert(1);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .btn {
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 30px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-btn {
+                border-radius: 30px;
+                padding: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">
-            <img src="images/logo.png" alt="Tech Coaching Logo">
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Tech Coaching Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <!-- <li><a href="blog.html">Blog</a></li> -->
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <!-- Hero Section with Slideshow -->
+    <!-- Hero Section -->
     <section class="hero">
-        <!-- Slideshow -->
         <div class="slideshow">
-            <img src="images/tech1.jpeg" alt="Slide 2" class="active">
-            <img src="images/tech2.jpeg" alt="Slide 1" class="active">
-            <img src="images/tech3.jpeg" alt="Slide 3" class="active">
-            <img src="images/tech4.jpeg" alt="Slide 4" class="active">
+            <img src="images/tech1.jpeg" alt="Coding" class="active">
+            <img src="images/tech2.jpeg" alt="Data Science" class="">
+            <img src="images/tech3.jpeg" alt="Cloud Computing" class="">
+            <img src="images/tech4.jpeg" alt="AI" class="">
         </div>
-        <!-- Hero Content -->
         <div class="hero-content">
-            <h1>Welcome to Tech Journey</h1>
-            <p class="subtitle">Empowering you to master the latest technologies and advance your career.</p>
-            <p>With over <strong>10 years of combined experience</strong> in Python, Django, Databases, Angular, React, HTML, CSS, and JavaScript, we’re here to guide you on your journey to becoming a tech expert.</p>
-            <a href="courses.html" class="btn">Explore Courses</a>
+            <h1>Master the Future of Technology</h1>
+            <p>Transform your career with our industry-leading tech courses taught by experts with over 10 years of real-world experience.</p>
+            <div class="btn-group">
+                <a href="courses.html" class="btn">Explore Courses</a>
+                <a href="contact.html" class="btn btn-outline">Get Consultation</a>
+            </div>
         </div>
     </section>
 
-    <!-- Key Features Section -->
-    <section class="features">
-        <h2>Why Choose Us?</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h3>Expert Instructors</h3>
-                <p>Learn from industry professionals with years of experience in tech.</p>
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Tech Coaching</h2>
+                <p>We provide the most comprehensive and practical tech education</p>
             </div>
-            <div class="feature-item">
-                <i class="fas fa-laptop-code"></i>
-                <h3>Hands-On Projects</h3>
-                <p>Gain practical experience with real-world projects and assignments.</p>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Industry Experts</h3>
+                    <p>Learn from instructors with 10+ years of professional experience in top tech companies.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Project-Based Learning</h3>
+                    <p>Build real-world projects that you can showcase in your portfolio to potential employers.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Career Support</h3>
+                    <p>Get resume reviews, interview preparation, and job placement assistance.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Flexible Scheduling</h3>
+                    <p>Learn at your own pace with both full-time and part-time options available.</p>
+                </div>
             </div>
-            <div class="feature-item">
-                <i class="fas fa-certificate"></i>
-                <h3>Certification</h3>
-                <p>Get certified and boost your career prospects.</p>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-briefcase"></i>
-                <h3>Placement Assistance</h3>
-                <p>We provide 100% placement assistance to help you land your dream job.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5000+</h3>
+                    <p>Students Trained</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Placement Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Industry Partners</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
-        <h2>What Our Students Say</h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-item">
-                <i class="fas fa-user-graduate" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
-                <h3>Rahul Sharma</h3>
-                <p>"Tech Coaching helped me land my dream job as a web developer. The hands-on projects and mentorship were invaluable!"</p>
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Success Stories</h2>
+                <p>Hear from our alumni who transformed their careers</p>
             </div>
-            <div class="testimonial-item">
-                <i class="fas fa-user-graduate" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
-                <h3>Priya Singh</h3>
-                <p>"The Data Science course was comprehensive and practical. I now feel confident working with real-world datasets."</p>
-            </div>
-            <div class="testimonial-item">
-                <i class="fas fa-user-graduate" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
-                <h3>Ankit Patel</h3>
-                <p>"The Cloud Computing course gave me the skills to deploy and manage applications on AWS. Highly recommended!"</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>The Web Development course completely changed my career trajectory. Within 3 months of completing the program, I landed my dream job at a tech startup.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RS</div>
+                        <div>
+                            <h4>Rahul Sharma</h4>
+                            <p>Web Developer at TechStart</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>As someone with no prior tech background, the Data Science course gave me the skills and confidence to transition into this exciting field.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PS</div>
+                        <div>
+                            <h4>Priya Singh</h4>
+                            <p>Data Analyst at DataCorp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <p>The Cloud Computing certification helped me get promoted to Senior DevOps Engineer with a 40% salary increase.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AP</div>
+                        <div>
+                            <h4>Ankit Patel</h4>
+                            <p>DevOps Engineer at CloudNine</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Upcoming Events Section -->
-    <section class="events">
-        <h2>Upcoming Events</h2>
-        <div class="events-grid">
-            <div class="event-item">
-                <i class="fas fa-calendar-alt"></i>
-                <h3>Web Development Workshop</h3>
-                <p>Join our hands-on workshop to learn the basics of web development.</p>
-                <p><strong>Date:</strong> April 10, 2025</p>
+    <!-- Events Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Upcoming Events</h2>
+                <p>Join our free workshops and webinars</p>
             </div>
-            <div class="event-item">
-                <i class="fas fa-calendar-alt"></i>
-                <h3>Data Science Bootcamp</h3>
-                <p>Learn data analysis, machine learning, and visualization in this intensive bootcamp.</p>
-                <p><strong>Date:</strong> April 5, 2025</p>
-            </div>
-            <div class="event-item">
-                <i class="fas fa-calendar-alt"></i>
-                <h3>Cloud Computing Seminar</h3>
-                <p>Discover the power of cloud computing with AWS, Azure, and GCP.</p>
-                <p><strong>Date:</strong> April 15, 2025</p>
+            <div class="events-grid">
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="images/web-dev-event.jpg" alt="Web Development Workshop">
+                    </div>
+                    <div class="event-details">
+                        <span class="event-date">APR 10, 2025</span>
+                        <h3>Web Development Workshop</h3>
+                        <p>Learn the fundamentals of HTML, CSS, and JavaScript in this hands-on workshop.</p>
+                        <a href="#" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Register Now</a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="images/data-science-event.jpg" alt="Data Science Bootcamp">
+                    </div>
+                    <div class="event-details">
+                        <span class="event-date">APR 15, 2025</span>
+                        <h3>Data Science Bootcamp</h3>
+                        <p>Introduction to Python for data analysis and machine learning concepts.</p>
+                        <a href="#" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Register Now</a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-image">
+                        <img src="images/cloud-event.jpg" alt="Cloud Computing Seminar">
+                    </div>
+                    <div class="event-details">
+                        <span class="event-date">APR 20, 2025</span>
+                        <h3>Cloud Computing Seminar</h3>
+                        <p>Discover how to deploy applications using AWS, Azure and Google Cloud.</p>
+                        <a href="#" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Register Now</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Success Stories Section -->
-    <section class="success-stories">
-        <h2>Success Stories</h2>
-        <div class="success-stories-grid">
-            <div class="success-story-item">
-                <i class="fas fa-user-graduate" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
-                <h3>From Beginner to Developer</h3>
-                <p>Rahul went from knowing nothing about coding to landing a job as a full-stack developer in just 6 months.</p>
-            </div>
-            <div class="success-story-item">
-                <i class="fas fa-chart-line" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
-                <h3>Data Science Career Boost</h3>
-                <p>Priya transitioned from a non-tech background to a data scientist role after completing our course.</p>
-            </div>
-            <div class="success-story-item">
-                <i class="fas fa-cloud" style="font-size: 3em; color: #007BFF; margin-bottom: 20px;"></i>
-                <h3>Cloud Engineer Success</h3>
-                <p>Ankit became a certified cloud engineer and now works at a top tech company.</p>
-            </div>
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for course updates, tech tips, and exclusive offers</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <!-- <footer>
-        <p>&copy; 2025 Tech Coaching. All rights reserved.</p>
-    </footer> -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <img src="images/logo.png" alt="Tech Coaching Logo">
+                <p>Empowering the next generation of tech professionals through quality education.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Courses</h3>
+                <ul>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Data Science</a></li>
+                    <li><a href="#">Cloud Computing</a></li>
+                    <li><a href="#">Cybersecurity</a></li>
+                    <li><a href="#">AI & ML</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Contact</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Bangalore</li>
+                    <li><i class="fas fa-phone"></i> +91 9876543210</li>
+                    <li><i class="fas fa-envelope"></i> info@techcoaching.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Tech Coaching. All Rights Reserved.</p>
+        </div>
+    </footer>
 
-    <!-- Slideshow Script -->
+    <!-- Enhanced Slideshow Script -->
     <script>
-        const slides = document.querySelectorAll('.slideshow img');
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slideshow img');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            // Preload all images
+            function preloadImages() {
+                slides.forEach(img => {
+                    if (img.src) {
+                        new Image().src = img.src;
+                    }
+                });
+            }
+            
+            function showSlide(index) {
+                // Reset all slides
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                    slide.style.zIndex = '0';
+                });
+                
+                // Show the current slide
+                slides[index].classList.add('active');
+                slides[index].style.zIndex = '1';
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            function startSlideshow() {
+                preloadImages();
+                showSlide(0);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            // Pause slideshow when window loses focus
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    clearInterval(slideInterval);
+                } else {
+                    slideInterval = setInterval(nextSlide, 5000);
+                }
             });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
-
-        setInterval(nextSlide, 5000); // Change slide every 5 seconds
+            
+            // Start the slideshow
+            startSlideshow();
+        });
     </script>
 </body>
 </html>

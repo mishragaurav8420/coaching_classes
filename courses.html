@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses - Tech Coaching</title>
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Add Google Fonts for better typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -14,18 +12,20 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            color: #000;
+            background-color: #fff;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
         }
         header {
-            background: linear-gradient(135deg, #007BFF, #00BFFF);
+            background: #000;
             color: #fff;
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         header .logo img {
             height: 50px;
@@ -43,10 +43,10 @@
             color: #fff;
             text-decoration: none;
             font-weight: bold;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
         header nav ul li a:hover {
-            color: #f0f0f0;
+            color: #ccc;
         }
         .courses {
             padding: 50px 20px;
@@ -55,42 +55,54 @@
             text-align: center;
         }
         .courses h2 {
-            font-family: 'Open Sans', sans-serif;
             font-size: 2.5em;
+            color: #000;
             margin-bottom: 40px;
-            color: #007BFF;
+            position: relative;
+        }
+        .courses h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #000;
+            margin: 15px auto;
         }
         .course-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
         .course-item {
             background-color: #fff;
+            border: 2px solid #000;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            cursor: pointer;
             padding: 20px;
             text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .course-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .course-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 2px solid #000;
+            margin-bottom: 15px;
+            border-radius: 5px;
         }
         .course-item h3 {
+            margin: 10px 0;
             font-size: 1.5em;
-            margin: 0;
-            color: #007BFF;
         }
-        footer {
-            background: linear-gradient(135deg, #007BFF, #00BFFF);
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+        .course-item .price {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 10px 0;
         }
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -105,58 +117,68 @@
         }
         .modal-content {
             background-color: #fff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
-            max-width: 600px;
+            max-width: 700px;
             width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
+            text-align: left;
+            border: 2px solid #000;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            font-weight: bold;
         }
         .modal-content h3 {
             font-size: 2em;
-            color: #007BFF;
-            margin-bottom: 20px;
-        }
-        .modal-content p {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 10px;
+            color: #000;
+            margin-top: 0;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
         }
         .modal-content .price {
             font-size: 1.5em;
-            color: #28a745;
             font-weight: bold;
-            margin: 20px 0;
+            margin: 15px 0;
         }
-        .modal-content .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 1.5em;
-            cursor: pointer;
-            color: #333;
+        .modal-content .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
         }
-        /* Responsive Design */
+        .modal-content .feature {
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        .modal-content h4 {
+            font-size: 1.3em;
+            margin: 20px 0 10px;
+        }
+        .modal-content ul {
+            padding-left: 20px;
+        }
+        .modal-content ul li {
+            margin-bottom: 8px;
+        }
         @media (max-width: 768px) {
-            header nav ul {
-                display: none;
+            header {
                 flex-direction: column;
-                background-color: #007BFF;
-                position: absolute;
-                top: 70px;
-                right: 20px;
-                width: 200px;
-                padding: 10px;
-                border-radius: 5px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center;
             }
-            header nav ul.active {
-                display: flex;
+            header nav ul {
+                margin-top: 15px;
             }
             header nav ul li {
-                margin: 10px 0;
-            }
-            .menu-toggle {
-                display: flex;
+                margin: 0 10px;
             }
             .course-list {
                 grid-template-columns: 1fr;
@@ -165,7 +187,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="logo">
             <img src="images/logo.png" alt="Tech Coaching Logo">
@@ -181,109 +202,380 @@
         </nav>
     </header>
 
-    <!-- Courses Section -->
     <section class="courses">
-        <h2>Our Courses</h2>
+        <h2>Our Tech Courses</h2>
         <div class="course-list">
-            <!-- Web Development -->
+            <!-- Course 1 -->
             <div class="course-item" onclick="openModal('web-development')">
-                <h3>Web Development</h3>
+                <img src="images/web-dev.jpg" alt="Web Development">
+                <h3>Complete Web Development</h3>
+                <div class="price">₹2,999</div>
+                <p>Master full-stack web development</p>
             </div>
-            <!-- Data Science -->
+            
+            <!-- Course 2 -->
+            <div class="course-item" onclick="openModal('python')">
+                <img src="images/python.jpg" alt="Python Programming">
+                <h3>Python Programming</h3>
+                <div class="price">₹1,999</div>
+                <p>From basics to advanced Python concepts</p>
+            </div>
+            
+            <!-- Course 3 -->
             <div class="course-item" onclick="openModal('data-science')">
-                <h3>Data Science</h3>
+                <img src="images/data-science.jpg" alt="Data Science">
+                <h3>Data Science Fundamentals</h3>
+                <div class="price">₹3,499</div>
+                <p>Learn data analysis and visualization</p>
             </div>
-            <!-- Cloud Computing -->
+            
+            <!-- Course 4 -->
             <div class="course-item" onclick="openModal('cloud-computing')">
+                <img src="images/cloud.jpg" alt="Cloud Computing">
                 <h3>Cloud Computing</h3>
+                <div class="price">₹3,999</div>
+                <p>AWS, Azure and Google Cloud</p>
             </div>
-            <!-- DSA with Python -->
-            <div class="course-item" onclick="openModal('dsa-python')">
-                <h3>DSA with Python</h3>
+            
+            <!-- Course 5 -->
+            <div class="course-item" onclick="openModal('cybersecurity')">
+                <img src="images/cyber.jpg" alt="Cybersecurity">
+                <h3>Cybersecurity Essentials</h3>
+                <div class="price">₹3,299</div>
+                <p>Protect systems from digital attacks</p>
             </div>
-            <!-- DSA with Java -->
-            <div class="course-item" onclick="openModal('dsa-java')">
-                <h3>DSA with Java</h3>
+            
+            <!-- Course 6 -->
+            <div class="course-item" onclick="openModal('mobile-dev')">
+                <img src="images/mobile.jpg" alt="Mobile Development">
+                <h3>Mobile App Development</h3>
+                <div class="price">₹3,799</div>
+                <p>Build iOS and Android apps</p>
             </div>
-            <!-- Programming Languages -->
-            <div class="course-item" onclick="openModal('programming-languages')">
-                <h3>Programming Languages</h3>
+            
+            <!-- Course 7 -->
+            <div class="course-item" onclick="openModal('ai-ml')">
+                <img src="images/ai.jpg" alt="AI & ML">
+                <h3>AI & Machine Learning</h3>
+                <div class="price">₹4,499</div>
+                <p>Introduction to artificial intelligence</p>
             </div>
+            
+            <!-- Course 8 -->
+            <div class="course-item" onclick="openModal('blockchain')">
+                <img src="images/blockchain.jpg" alt="Blockchain">
+                <h3>Blockchain Technology</h3>
+                <div class="price">₹4,199</div>
+                <p>Learn cryptocurrency and smart contracts</p>
+            </div>
+            
+            <!-- Course 9 -->
+            <div class="course-item" onclick="openModal('devops')">
+                <img src="images/devops.jpg" alt="DevOps">
+                <h3>DevOps Engineering</h3>
+                <div class="price">₹3,899</div>
+                <p>CI/CD pipelines and automation</p>
+            </div>
+            
+            <!-- Course 10 -->
+            <!-- <div class="course-item" onclick="openModal('iot')">
+                <img src="images/iot.jpg" alt="IoT">
+                <h3>Internet of Things (IoT)</h3>
+                <div class="price">₹3,599</div>
+                <p>Connect devices to the cloud</p>
+            </div> -->
         </div>
     </section>
 
-    <!-- Footer -->
-    <!-- <footer>
-        <p>&copy; 2023 Tech Coaching. All rights reserved.</p>
-    </footer> -->
-
-    <!-- Course Details Modal -->
+    <!-- Modal Structure -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h3 id="modal-title">Web Development</h3>
-            <p id="modal-description">Learn to build responsive websites with HTML, CSS, JavaScript, and modern frameworks like React and Angular.</p>
-            <div class="price" id="modal-price">₹4999</div>
-            <p><strong>Features:</strong></p>
-            <ul>
-                <li>Live interactive sessions</li>
-                <li>PDF notes and resources</li>
-                <li>Recordings of all lectures</li>
-                <li>Hands-on projects and assignments</li>
+            <h3 id="modal-title">Course Title</h3>
+            <div class="price" id="modal-price">₹2,999</div>
+            
+            <div class="features">
+                <span class="feature"><i class="fas fa-video"></i> Live Classes</span>
+                <span class="feature"><i class="fas fa-file-pdf"></i> PDF Notes</span>
+                <span class="feature"><i class="fas fa-certificate"></i> Certificate</span>
+                <span class="feature"><i class="fas fa-headset"></i> 24/7 Support</span>
+            </div>
+            
+            <h4>Course Description</h4>
+            <p id="modal-description">Detailed course description will appear here.</p>
+            
+            <h4>What You'll Learn</h4>
+            <ul id="modal-learn">
+                <li>Skill 1 you will acquire</li>
+                <li>Skill 2 you will acquire</li>
+                <li>Skill 3 you will acquire</li>
             </ul>
-            <a href="contact.html?course=web-development" class="btn">Enroll Now</a>
+            
+            <h4>Course Curriculum</h4>
+            <ul id="modal-curriculum">
+                <li>Module 1: Introduction</li>
+                <li>Module 2: Core Concepts</li>
+                <li>Module 3: Advanced Topics</li>
+                <li>Module 4: Practical Projects</li>
+            </ul>
+            
+            <h4>Who This Course Is For</h4>
+            <p id="modal-audience">This course is perfect for beginners and intermediate learners who want to...</p>
         </div>
     </div>
 
     <script>
-        // Modal functionality
-        function openModal(course) {
-            const modal = document.getElementById('modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalDescription = document.getElementById('modal-description');
-            const modalPrice = document.getElementById('modal-price');
-
-            if (course === 'web-development') {
-                modalTitle.textContent = 'Web Development';
-                modalDescription.textContent = 'Learn to build responsive websites with HTML, CSS, JavaScript, and modern frameworks like React and Angular.';
-                modalPrice.textContent = '₹4999';
-            } else if (course === 'data-science') {
-                modalTitle.textContent = 'Data Science';
-                modalDescription.textContent = 'Master data analysis, machine learning, and data visualization using Python, R, and advanced tools.';
-                modalPrice.textContent = '₹5999';
-            } else if (course === 'cloud-computing') {
-                modalTitle.textContent = 'Cloud Computing';
-                modalDescription.textContent = 'Learn to deploy and manage applications on AWS, Azure, and GCP with hands-on projects.';
-                modalPrice.textContent = '₹3999';
-            } else if (course === 'dsa-python') {
-                modalTitle.textContent = 'DSA with Python';
-                modalDescription.textContent = 'Master Data Structures and Algorithms using Python with hands-on coding exercises and real-world problems.';
-                modalPrice.textContent = '₹3999';
-            } else if (course === 'dsa-java') {
-                modalTitle.textContent = 'DSA with Java';
-                modalDescription.textContent = 'Master Data Structures and Algorithms using Java with hands-on coding exercises and real-world problems.';
-                modalPrice.textContent = '₹2999';
-            } else if (course === 'programming-languages') {
-                modalTitle.textContent = 'Programming Languages';
-                modalDescription.textContent = 'Learn programming languages like Python, Java, C++, and C from scratch with hands-on projects.';
-                modalPrice.textContent = '₹1999';
+        // Course data
+        const courses = {
+            'web-development': {
+                title: 'Complete Web Development',
+                price: '₹2,999',
+                description: 'Become a full-stack web developer with this comprehensive course covering HTML, CSS, JavaScript, React, Node.js, and MongoDB. Build real-world projects and deploy your applications.',
+                learn: [
+                    'Build responsive websites with HTML5 and CSS3',
+                    'Create interactive UIs with JavaScript and React',
+                    'Develop server-side applications with Node.js and Express',
+                    'Work with databases (MongoDB, SQL)',
+                    'Deploy applications to cloud platforms'
+                ],
+                curriculum: [
+                    'Module 1: HTML5 & CSS3 Fundamentals (4 weeks)',
+                    'Module 2: JavaScript & DOM Manipulation (6 weeks)',
+                    'Module 3: React.js for Frontend Development (5 weeks)',
+                    'Module 4: Node.js & Express for Backend (6 weeks)',
+                    'Module 5: Database Integration (4 weeks)',
+                    'Module 6: Deployment & DevOps (2 weeks)'
+                ],
+                audience: 'Beginners with no coding experience or developers looking to become full-stack engineers. Perfect for career changers and entrepreneurs who want to build their own websites.'
+            },
+            'python': {
+                title: 'Python Programming Mastery',
+                price: '₹1,999',
+                description: 'Learn Python from scratch to advanced level. This course covers Python syntax, data structures, OOP, web scraping, automation, and introduction to data science with Python.',
+                learn: [
+                    'Python syntax and core programming concepts',
+                    'Object-Oriented Programming in Python',
+                    'Working with files and databases',
+                    'Web scraping and automation',
+                    'Basic data analysis with Pandas'
+                ],
+                curriculum: [
+                    'Module 1: Python Basics (3 weeks)',
+                    'Module 2: Data Structures (4 weeks)',
+                    'Module 3: OOP in Python (3 weeks)',
+                    'Module 4: File Handling & Databases (3 weeks)',
+                    'Module 5: Web Scraping & Automation (3 weeks)',
+                    'Module 6: Introduction to Data Science (2 weeks)'
+                ],
+                audience: 'Absolute beginners or programmers from other languages wanting to learn Python. Suitable for students, professionals, and anyone interested in automation or data analysis.'
+            },
+            'data-science': {
+                title: 'Data Science Fundamentals',
+                price: '₹3,499',
+                description: 'Master the essential tools of data science including Python, Pandas, NumPy, Matplotlib, and Scikit-learn. Learn to analyze, visualize, and derive insights from data.',
+                learn: [
+                    'Data cleaning and preprocessing',
+                    'Exploratory data analysis',
+                    'Data visualization techniques',
+                    'Machine learning fundamentals',
+                    'Statistical analysis methods'
+                ],
+                curriculum: [
+                    'Module 1: Python for Data Science (3 weeks)',
+                    'Module 2: Data Analysis with Pandas (4 weeks)',
+                    'Module 3: Data Visualization (3 weeks)',
+                    'Module 4: Statistical Methods (4 weeks)',
+                    'Module 5: Machine Learning Basics (4 weeks)',
+                    'Module 6: Capstone Project (2 weeks)'
+                ],
+                audience: 'Programmers, analysts, and professionals looking to enter the data science field. Basic Python knowledge recommended but not required.'
+            },
+            'cloud-computing': {
+                title: 'Cloud Computing with AWS, Azure & GCP',
+                price: '₹3,999',
+                description: 'Learn cloud computing fundamentals and get hands-on experience with AWS, Microsoft Azure, and Google Cloud Platform. Deploy applications and manage cloud infrastructure.',
+                learn: [
+                    'Cloud computing concepts and architecture',
+                    'AWS EC2, S3, Lambda services',
+                    'Azure virtual machines and storage',
+                    'Google Cloud Platform services',
+                    'DevOps in the cloud environment'
+                ],
+                curriculum: [
+                    'Module 1: Cloud Fundamentals (2 weeks)',
+                    'Module 2: AWS Core Services (4 weeks)',
+                    'Module 3: Microsoft Azure (4 weeks)',
+                    'Module 4: Google Cloud Platform (3 weeks)',
+                    'Module 5: Cloud Security (3 weeks)',
+                    'Module 6: Deployment Projects (4 weeks)'
+                ],
+                audience: 'IT professionals, developers, and system administrators looking to transition to cloud roles. Basic understanding of networking recommended.'
+            },
+            'cybersecurity': {
+                title: 'Cybersecurity Essentials',
+                price: '₹3,299',
+                description: 'Learn to protect systems, networks, and programs from digital attacks. This course covers ethical hacking, penetration testing, cryptography, and security best practices.',
+                learn: [
+                    'Network security fundamentals',
+                    'Ethical hacking techniques',
+                    'Cryptography and encryption',
+                    'Penetration testing methods',
+                    'Security compliance standards'
+                ],
+                curriculum: [
+                    'Module 1: Cybersecurity Basics (3 weeks)',
+                    'Module 2: Network Security (4 weeks)',
+                    'Module 3: Ethical Hacking (5 weeks)',
+                    'Module 4: Cryptography (3 weeks)',
+                    'Module 5: Security Compliance (3 weeks)',
+                    'Module 6: Practical Security Projects (2 weeks)'
+                ],
+                audience: 'IT professionals, network administrators, and anyone interested in cybersecurity careers. Basic networking knowledge helpful but not required.'
+            },
+            'mobile-dev': {
+                title: 'Mobile App Development',
+                price: '₹3,799',
+                description: 'Build native and cross-platform mobile applications for iOS and Android. Learn Flutter, React Native, Swift, and Kotlin to create professional mobile apps.',
+                learn: [
+                    'Cross-platform development with Flutter',
+                    'React Native for JavaScript developers',
+                    'iOS development with Swift',
+                    'Android development with Kotlin',
+                    'App publishing process'
+                ],
+                curriculum: [
+                    'Module 1: Mobile Development Basics (2 weeks)',
+                    'Module 2: Flutter Fundamentals (5 weeks)',
+                    'Module 3: React Native (4 weeks)',
+                    'Module 4: Native iOS Development (4 weeks)',
+                    'Module 5: Native Android Development (4 weeks)',
+                    'Module 6: App Deployment (1 week)'
+                ],
+                audience: 'Web developers looking to expand into mobile, or beginners wanting to start with mobile development. Some programming experience recommended.'
+            },
+            'ai-ml': {
+                title: 'AI & Machine Learning',
+                price: '₹4,499',
+                description: 'Introduction to artificial intelligence and machine learning. Learn algorithms, neural networks, deep learning, and build AI models using Python and TensorFlow.',
+                learn: [
+                    'Machine learning algorithms',
+                    'Neural networks and deep learning',
+                    'Natural language processing',
+                    'Computer vision basics',
+                    'Model training and evaluation'
+                ],
+                curriculum: [
+                    'Module 1: AI Fundamentals (3 weeks)',
+                    'Module 2: Machine Learning Basics (5 weeks)',
+                    'Module 3: Deep Learning (5 weeks)',
+                    'Module 4: NLP & Computer Vision (4 weeks)',
+                    'Module 5: TensorFlow & PyTorch (3 weeks)',
+                    'Module 6: AI Project (2 weeks)'
+                ],
+                audience: 'Developers, data analysts, and tech enthusiasts interested in AI. Strong Python skills and basic math knowledge required.'
+            },
+            'blockchain': {
+                title: 'Blockchain Technology',
+                price: '₹4,199',
+                description: 'Learn blockchain fundamentals, cryptocurrency, smart contracts, and decentralized applications. Build your own blockchain and create smart contracts with Solidity.',
+                learn: [
+                    'Blockchain architecture and concepts',
+                    'Cryptocurrency fundamentals',
+                    'Smart contract development',
+                    'Ethereum and Solidity',
+                    'DApp development'
+                ],
+                curriculum: [
+                    'Module 1: Blockchain Basics (3 weeks)',
+                    'Module 2: Cryptocurrency (3 weeks)',
+                    'Module 3: Smart Contracts (5 weeks)',
+                    'Module 4: Ethereum Development (4 weeks)',
+                    'Module 5: DApps (3 weeks)',
+                    'Module 6: Blockchain Security (2 weeks)'
+                ],
+                audience: 'Developers, finance professionals, and entrepreneurs interested in blockchain technology. Programming experience recommended.'
+            },
+            'devops': {
+                title: 'DevOps Engineering',
+                price: '₹3,899',
+                description: 'Master DevOps tools and practices including Docker, Kubernetes, Jenkins, and CI/CD pipelines. Learn to automate deployment and scale applications.',
+                learn: [
+                    'Containerization with Docker',
+                    'Orchestration with Kubernetes',
+                    'CI/CD pipelines',
+                    'Infrastructure as Code',
+                    'Monitoring and logging'
+                ],
+                curriculum: [
+                    'Module 1: DevOps Fundamentals (2 weeks)',
+                    'Module 2: Docker & Containers (4 weeks)',
+                    'Module 3: Kubernetes (4 weeks)',
+                    'Module 4: CI/CD with Jenkins (4 weeks)',
+                    'Module 5: Infrastructure as Code (3 weeks)',
+                    'Module 6: DevOps Best Practices (3 weeks)'
+                ],
+                audience: 'Developers, system administrators, and IT professionals looking to implement DevOps practices. Basic Linux and scripting knowledge required.'
+            },
+            'iot': {
+                title: 'Internet of Things (IoT)',
+                price: '₹3,599',
+                description: 'Learn to connect physical devices to the internet and build IoT solutions. Work with sensors, microcontrollers, and cloud platforms for IoT applications.',
+                learn: [
+                    'IoT architecture and protocols',
+                    'Working with Arduino and Raspberry Pi',
+                    'Sensor integration',
+                    'IoT cloud platforms',
+                    'Data processing from IoT devices'
+                ],
+                curriculum: [
+                    'Module 1: IoT Fundamentals (2 weeks)',
+                    'Module 2: Hardware Basics (4 weeks)',
+                    'Module 3: IoT Protocols (3 weeks)',
+                    'Module 4: Cloud Integration (4 weeks)',
+                    'Module 5: Data Processing (3 weeks)',
+                    'Module 6: IoT Security (2 weeks)'
+                ],
+                audience: 'Engineers, hobbyists, and developers interested in building connected devices. Basic electronics knowledge helpful but not required.'
             }
+        };
 
-            modal.style.display = 'flex';
+        function openModal(courseId) {
+            const course = courses[courseId];
+            document.getElementById('modal-title').textContent = course.title;
+            document.getElementById('modal-price').textContent = course.price;
+            document.getElementById('modal-description').textContent = course.description;
+            
+            const learnList = document.getElementById('modal-learn');
+            learnList.innerHTML = '';
+            course.learn.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                learnList.appendChild(li);
+            });
+            
+            const curriculumList = document.getElementById('modal-curriculum');
+            curriculumList.innerHTML = '';
+            course.curriculum.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                curriculumList.appendChild(li);
+            });
+            
+            document.getElementById('modal-audience').textContent = course.audience;
+            document.getElementById('modal').style.display = 'flex';
         }
 
         function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
         }
 
         // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('modal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            if (event.target == modal) {
+                closeModal();
             }
-        };
+        }
     </script>
 </body>
 </html>
