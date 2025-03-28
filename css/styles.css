@@ -224,3 +224,13 @@ nav a:hover::after {
         transform: translateY(-9px) rotate(-45deg);
     }
 }
+
+main {
+    margin-left: 250px; /* Should match the header width */
+}
+
+@media (max-width: 768px) {
+    main {
+        margin-left: 0;
+    }
+}
