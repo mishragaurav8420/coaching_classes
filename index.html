@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Coaching - Home</title>
+    <title>Tech Journey - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        
         :root {
             --black: #000000;
             --white: #ffffff;
             --gray-dark: #333333;
             --gray-medium: #666666;
             --gray-light: #f5f5f5;
+            --primary: #4CAF50;
+            --secondary: #FFC107;
         }
         
         body {
@@ -23,18 +24,14 @@
             color: var(--black);
             background-color: var(--white);
             line-height: 1.7;
+            overflow-x: hidden;
         }
         
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-        
-        /* Header Styles */
+        /* Improved Header */
         header {
             background-color: var(--black);
             color: var(--white);
-            padding: 1.5rem 2rem;
+            padding: 1rem;
             position: fixed;
             width: 100%;
             top: 0;
@@ -50,9 +47,26 @@
             align-items: center;
         }
         
-        .logo img {
-            height: 50px;
-            filter: invert(1);
+        .techjourney-logo {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+        
+        .tech {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary);
+        }
+        
+        .journey {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--secondary);
         }
         
         nav ul {
@@ -60,49 +74,83 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            gap: 1.5rem;
         }
         
-        nav li {
-            margin-left: 2rem;
-        }
-        
-        nav a {
-            color: var(--white);
+        nav li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            letter-spacing: 0.5px;
-            transition: color 0.3s;
-            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
         }
         
-        nav a:hover {
-            color: #ccc;
+        nav li a i {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
         }
         
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--white);
-            transition: width 0.3s;
+        /* Colorful Icons */
+        nav li:nth-child(1) a i { color: #FF5722; } /* Home */
+        nav li:nth-child(2) a i { color: #2196F3; } /* About */
+        nav li:nth-child(3) a i { color: #9C27B0; } /* Courses */
+        nav li:nth-child(4) a i { color: #E91E63; } /* Contact */
+        
+        nav li a span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            opacity: 0.8;
         }
         
-        nav a:hover::after {
-            width: 100%;
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
         }
         
-        /* Hero Section - Updated for better image handling */
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section - Improved for Mobile */
         .hero {
             height: 100vh;
+            min-height: 600px;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            margin-top: 80px;
+            margin-top: 70px;
+        }
+        
+        .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slideshow img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        
+        .slideshow img.active {
+            opacity: 1;
         }
         
         .hero::before {
@@ -127,18 +175,21 @@
         }
         
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font size */
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
             line-height: 1.2;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
         
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.2rem); /* Responsive font size */
+            font-size: clamp(1rem, 2vw, 1.2rem);
             margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .btn {
@@ -151,7 +202,6 @@
             border-radius: 30px;
             transition: all 0.3s;
             border: 2px solid var(--white);
-            margin: 0 10px;
         }
         
         .btn-outline {
@@ -164,63 +214,9 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
-        .btn-outline:hover {
-            background-color: var(--white);
-            color: var(--black);
-        }
-        
-        /* Updated Slideshow Styles */
-        .slideshow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .slideshow img {
-            position: absolute;
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            will-change: opacity;
-        }
-        
-        .slideshow img.active {
-            opacity: 1;
-            z-index: 1;
-        }
-        
-        /* Section Styles */
+        /* Sections */
         .section {
-            padding: 6rem 2rem;
-            position: relative;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--black);
-            margin: 1rem auto;
+            padding: 4rem 1rem;
         }
         
         .container {
@@ -228,7 +224,17 @@
             margin: 0 auto;
         }
         
-        /* Features Grid */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Features Grid - Added More Icons */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -237,11 +243,11 @@
         
         .feature-item {
             background: var(--white);
-            border: 1px solid #e0e0e0;
             padding: 2rem;
             text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: all 0.3s;
-            border-radius: 5px;
         }
         
         .feature-item:hover {
@@ -250,9 +256,9 @@
         }
         
         .feature-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            color: var(--black);
+            color: var(--primary);
         }
         
         /* Testimonials */
@@ -269,7 +275,7 @@
         .testimonial-item {
             background: var(--white);
             padding: 2rem;
-            border-radius: 5px;
+            border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             position: relative;
         }
@@ -280,79 +286,25 @@
             position: absolute;
             top: 0;
             left: 1rem;
-            line-height: 1;
-            color: rgba(0,0,0,0.1);
-            font-family: serif;
+            color: rgba(0,0,0,0.05);
         }
         
-        .testimonial-content {
-            margin-bottom: 1.5rem;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 1rem;
-            background: var(--gray-medium);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: bold;
-        }
-        
-        /* Stats Section */
-        .stats {
-            background-color: var(--black);
-            color: var(--white);
-            text-align: center;
-            padding: 4rem 0;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-        
-        .stat-item h3 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
-        }
-        
-        .stat-item p {
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-        
-        /* Events Section */
+        /* Events Section - Enhanced */
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
         
         .event-item {
-            border: 1px solid #e0e0e0;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s;
         }
         
         .event-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .event-image {
@@ -368,7 +320,7 @@
         }
         
         .event-item:hover .event-image img {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .event-details {
@@ -381,7 +333,7 @@
             color: var(--white);
             padding: 0.3rem 1rem;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin-bottom: 1rem;
         }
         
@@ -389,44 +341,43 @@
         .newsletter {
             background-color: var(--gray-light);
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 4rem 1rem;
         }
         
         .newsletter-form {
             max-width: 600px;
             margin: 0 auto;
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
         .newsletter-input {
             flex: 1;
+            min-width: 250px;
             padding: 0.8rem 1rem;
             border: 1px solid #ddd;
-            border-radius: 30px 0 0 30px;
+            border-radius: 30px;
             font-size: 1rem;
-            outline: none;
+            margin-bottom: 1rem;
         }
         
         .newsletter-btn {
-            padding: 0 2rem;
+            padding: 0.8rem 2rem;
             background: var(--black);
             color: var(--white);
             border: none;
-            border-radius: 0 30px 30px 0;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
             transition: background 0.3s;
         }
         
-        .newsletter-btn:hover {
-            background: var(--gray-dark);
-        }
-        
-        /* Footer */
+        /* Footer - Enhanced */
         footer {
             background-color: var(--black);
             color: var(--white);
-            padding: 4rem 2rem 2rem;
+            padding: 3rem 1rem 1rem;
         }
         
         .footer-grid {
@@ -445,7 +396,7 @@
         
         .footer-links h3 {
             margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         
         .footer-links ul {
@@ -487,57 +438,97 @@
         }
         
         .social-links a:hover {
-            background: rgba(255,255,255,0.2);
+            background: var(--primary);
             transform: translateY(-3px);
         }
         
         .copyright {
             text-align: center;
             margin-top: 3rem;
-            padding-top: 2rem;
+            padding-top: 1rem;
             border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #999;
         }
         
         /* Responsive Adjustments */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--black);
+                padding: 1rem;
+                transform: translateY(-150%);
+                transition: transform 0.4s ease;
+                z-index: 999;
             }
             
-            .hero p {
-                font-size: 1rem;
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav li a {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 0.8rem;
+            }
+            
+            nav li a i {
+                margin-bottom: 0;
+                margin-right: 1rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+                background: var(--secondary);
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+                background: var(--secondary);
+            }
+            
+            .hero {
+                min-height: 500px;
+            }
+            
+            .hero-content {
+                padding: 1rem;
             }
             
             .btn-group {
-                display: flex;
                 flex-direction: column;
+                align-items: center;
             }
             
             .btn {
-                margin: 0.5rem 0;
                 width: 100%;
+                max-width: 250px;
+                margin: 0.5rem 0;
             }
             
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .newsletter-input {
-                border-radius: 30px;
-                margin-bottom: 1rem;
-            }
-            
-            .newsletter-btn {
-                border-radius: 30px;
-                padding: 0.8rem;
+            .section {
+                padding: 3rem 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <!-- Header -->
     <header>
         <div class="header-container">
@@ -562,216 +553,14 @@
             </div>
         </div>
     </header>
-    
-    <style>
-        /* Base Styles */
-        header {
-            background-color: #000;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        /* Logo Styling */
-        .techjourney-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            line-height: 1;
-        }
-        
-        .tech {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #4CAF50; /* Green color */
-            text-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-        }
-        
-        .journey {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: lowercase;
-            color: #FFC107; /* Amber color */
-        }
-        
-        /* Desktop Navigation */
-        nav ul {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 1.5rem;
-        }
-        
-        nav li a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 0.5rem;
-        }
-        
-        nav li a i {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
-            transition: all 0.3s ease;
-        }
-        
-        /* Colorful Icons */
-        nav li:nth-child(1) a i { color: #FF5722; } /* Home - Deep Orange */
-        nav li:nth-child(2) a i { color: #2196F3; } /* About - Blue */
-        nav li:nth-child(3) a i { color: #9C27B0; } /* Courses - Purple */
-        nav li:nth-child(4) a i { color: #E91E63; } /* Contact - Pink */
-        
-        nav li a span {
-            font-size: 0.7rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
-        }
-        
-        nav li a:hover i {
-            transform: translateY(-3px);
-            filter: brightness(1.2);
-        }
-        
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        
-        .mobile-menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: #4CAF50;
-            transition: all 0.3s ease;
-        }
-        
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 0.5rem 1rem;
-            }
-            
-            nav {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: #000;
-                padding: 1rem 0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-                transform: translateY(-150%);
-                transition: transform 0.4s ease;
-                z-index: 999;
-            }
-            
-            nav.active {
-                transform: translateY(0);
-            }
-            
-            nav ul {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            nav li {
-                width: 100%;
-            }
-            
-            nav li a {
-                flex-direction: row;
-                justify-content: flex-start;
-                padding: 1rem 2rem;
-                align-items: center;
-                border-left: 4px solid transparent;
-                transition: all 0.3s ease;
-            }
-            
-            nav li a i {
-                font-size: 1.5rem;
-                margin-bottom: 0;
-                margin-right: 1rem;
-            }
-            
-            nav li a span {
-                font-size: 1rem;
-                opacity: 1;
-            }
-            
-            nav li a:hover {
-                background: rgba(255,255,255,0.05);
-                border-left: 4px solid currentColor;
-            }
-            
-            .mobile-menu-toggle {
-                display: flex;
-            }
-            
-            .mobile-menu-toggle.active span:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-                background: #FFC107;
-            }
-            
-            .mobile-menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .mobile-menu-toggle.active span:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-                background: #FFC107;
-            }
-        }
-    </style>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggle = document.querySelector('.mobile-menu-toggle');
-            const nav = document.querySelector('nav');
-            
-            if (toggle) {
-                toggle.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    nav.classList.toggle('active');
-                    
-                    // Toggle body scroll when menu is open
-                    document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-                });
-            }
-        });
-    </script>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="slideshow">
-            <img src="images/tech1.jpeg" alt="Coding" class="active">
-            <img src="images/tech2.jpeg" alt="Data Science" class="">
-            <img src="images/tech3.jpeg" alt="Cloud Computing" class="">
-            <img src="images/tech4.jpeg" alt="AI" class="">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coding" class="active">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Data Science">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cloud Computing">
+            <img src="https://images.unsplash.com/photo-1677442135136-760c813cd6d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AI">
         </div>
         <div class="hero-content">
             <h1>Master the Future of Technology</h1>
@@ -783,69 +572,147 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features Section - Enhanced with More Icons -->
     <section class="section">
         <div class="container">
             <div class="section-title">
-                <h2>Why Choose Tech Coaching</h2>
+                <h2>Why Choose Tech Journey</h2>
                 <p>We provide the most comprehensive and practical tech education</p>
             </div>
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-user-tie"></i>
+                        <i class="fas fa-chalkboard-teacher"></i>
                     </div>
-                    <h3>Industry Experts</h3>
-                    <p>Learn from instructors with 10+ years of professional experience in top tech companies.</p>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from industry professionals with 10+ years of experience in top tech companies.</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
-                    <h3>Project-Based Learning</h3>
-                    <p>Build real-world projects that you can showcase in your portfolio to potential employers.</p>
+                    <h3>Hands-on Projects</h3>
+                    <p>Build real-world applications to showcase in your professional portfolio.</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
                         <i class="fas fa-briefcase"></i>
                     </div>
-                    <h3>Career Support</h3>
-                    <p>Get resume reviews, interview preparation, and job placement assistance.</p>
+                    <h3>Career Services</h3>
+                    <p>Get personalized career coaching and job placement assistance.</p>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3>Flexible Scheduling</h3>
-                    <p>Learn at your own pace with both full-time and part-time options available.</p>
+                    <h3>Community Support</h3>
+                    <p>Join our vibrant community of learners and professionals.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Industry Certifications</h3>
+                    <p>Earn recognized certifications to boost your resume.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Get help whenever you need it from our dedicated support team.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
+    <section class="stats section">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <h3>5+</h3>
-                    <p>Years Experience</p>
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat-item">
-                    <h3>500+</h3>
-                    <p>Students Trained</p>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Students Trained</div>
                 </div>
                 <div class="stat-item">
-                    <h3>95%</h3>
-                    <p>Placement Rate</p>
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Placement Rate</div>
                 </div>
                 <div class="stat-item">
-                    <h3>50+</h3>
-                    <p>Industry Partners</p>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Industry Partners</div>
                 </div>
             </div>
         </div>
     </section>
+    
+    <style>
+        /* Stats Section Styles */
+        .stats {
+            background-color: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .stat-item {
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .stat-label {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 
     <!-- Testimonials Section -->
     <section class="section testimonials">
@@ -857,10 +724,10 @@
             <div class="testimonials-grid">
                 <div class="testimonial-item">
                     <div class="testimonial-content">
-                        <p>The Web Development course completely changed my career trajectory. Within 3 months of completing the program, I landed my dream job at a tech startup.</p>
+                        <p>"The Web Development course completely changed my career. Within 3 months, I landed my dream job at a tech startup with a 50% salary increase."</p>
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">RS</div>
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
                         <div>
                             <h4>Rahul Sharma</h4>
                             <p>Web Developer at TechStart</p>
@@ -869,10 +736,10 @@
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-content">
-                        <p>As someone with no prior tech background, the Data Science course gave me the skills and confidence to transition into this exciting field.</p>
+                        <p>"Coming from a non-tech background, the Data Science program gave me the skills and confidence to transition into this exciting field."</p>
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">PS</div>
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
                         <div>
                             <h4>Priya Singh</h4>
                             <p>Data Analyst at DataCorp</p>
@@ -881,10 +748,10 @@
                 </div>
                 <div class="testimonial-item">
                     <div class="testimonial-content">
-                        <p>The Cloud Computing certification helped me get promoted to Senior DevOps Engineer with a 40% salary increase.</p>
+                        <p>"The Cloud Computing certification helped me get promoted to Senior DevOps Engineer with better pay and more responsibilities."</p>
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">AP</div>
+                        <div class="author-avatar"><i class="fas fa-user"></i></div>
                         <div>
                             <h4>Ankit Patel</h4>
                             <p>DevOps Engineer at CloudNine</p>
@@ -895,44 +762,44 @@
         </div>
     </section>
 
-    <!-- Events Section -->
+    <!-- Events Section - Enhanced -->
     <section class="section">
         <div class="container">
             <div class="section-title">
-                <h2>Upcoming Events</h2>
-                <p>Join our free workshops and webinars</p>
+                <h2>Upcoming Events & Workshops</h2>
+                <p>Join our free learning sessions and networking events</p>
             </div>
             <div class="events-grid">
                 <div class="event-item">
                     <div class="event-image">
-                        <img src="images/web-dev-event.jpg" alt="Web Development Workshop">
+                        <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Web Development Workshop">
                     </div>
                     <div class="event-details">
                         <span class="event-date">APR 10, 2025</span>
                         <h3>Web Development Workshop</h3>
-                        <p>Learn the fundamentals of HTML, CSS, and JavaScript in this hands-on workshop.</p>
+                        <p>Learn modern web development with HTML5, CSS3, and JavaScript frameworks.</p>
                         <a href="#" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Register Now</a>
                     </div>
                 </div>
                 <div class="event-item">
                     <div class="event-image">
-                        <img src="images/data-science-event.jpg" alt="Data Science Bootcamp">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Data Science Bootcamp">
                     </div>
                     <div class="event-details">
                         <span class="event-date">APR 15, 2025</span>
                         <h3>Data Science Bootcamp</h3>
-                        <p>Introduction to Python for data analysis and machine learning concepts.</p>
+                        <p>Introduction to Python, Pandas, and Machine Learning fundamentals.</p>
                         <a href="#" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Register Now</a>
                     </div>
                 </div>
                 <div class="event-item">
                     <div class="event-image">
-                        <img src="images/cloud-event.jpg" alt="Cloud Computing Seminar">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cloud Computing Seminar">
                     </div>
                     <div class="event-details">
                         <span class="event-date">APR 20, 2025</span>
                         <h3>Cloud Computing Seminar</h3>
-                        <p>Discover how to deploy applications using AWS, Azure and Google Cloud.</p>
+                        <p>Learn to deploy applications using AWS, Azure and Google Cloud platforms.</p>
                         <a href="#" class="btn" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Register Now</a>
                     </div>
                 </div>
@@ -952,79 +819,81 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - Enhanced -->
     <footer>
         <div class="footer-grid">
             <div class="footer-logo">
-                <img src="images/logo.png" alt="Tech Coaching Logo">
-                <p>Empowering the next generation of tech professionals through quality education.</p>
+                <div class="techjourney-logo" style="color: white;">
+                    <span class="tech">TECH</span>
+                    <span class="journey">journey</span>
+                </div>
+                <p>Empowering the next generation of tech professionals through innovative education.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
                 </div>
             </div>
             <div class="footer-links">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <!-- <li><a href="blog.html">Blog</a></li> -->
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="courses.html"><i class="fas fa-chevron-right"></i> Courses</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h3>Courses</h3>
+                <h3>Popular Courses</h3>
                 <ul>
-                    <li><a href="#">Web Development</a></li>
-                    <li><a href="#">Data Science</a></li>
-                    <li><a href="#">Cloud Computing</a></li>
-                    <li><a href="#">Cybersecurity</a></li>
-                    <li><a href="#">AI & ML</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Full Stack Development</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Data Science</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Cloud Engineering</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Cybersecurity</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h3>Contact</h3>
+                <h3>Contact Info</h3>
                 <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> Noida Sector 62</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Noida Sector 62, India</li>
                     <li><i class="fas fa-phone"></i> +91 6387823660</li>
                     <li><i class="fas fa-envelope"></i> techjourney.tech.engineers@gmail.com</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2025 Tech Coaching. All Rights Reserved.</p>
+            <p>&copy; 2025 Tech Journey. All Rights Reserved. | <a href="#" style="color: var(--secondary);">Privacy Policy</a> | <a href="#" style="color: var(--secondary);">Terms of Service</a></p>
         </div>
     </footer>
 
     <!-- Enhanced Slideshow Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('nav');
+            
+            if (toggle) {
+                toggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    nav.classList.toggle('active');
+                    document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            // Slideshow Functionality
             const slides = document.querySelectorAll('.slideshow img');
             let currentSlide = 0;
             let slideInterval;
             
-            // Preload all images
-            function preloadImages() {
-                slides.forEach(img => {
-                    if (img.src) {
-                        new Image().src = img.src;
-                    }
-                });
-            }
-            
             function showSlide(index) {
-                // Reset all slides
                 slides.forEach(slide => {
                     slide.classList.remove('active');
-                    slide.style.zIndex = '0';
                 });
-                
-                // Show the current slide
                 slides[index].classList.add('active');
-                slides[index].style.zIndex = '1';
             }
             
             function nextSlide() {
@@ -1033,7 +902,6 @@
             }
             
             function startSlideshow() {
-                preloadImages();
                 showSlide(0);
                 slideInterval = setInterval(nextSlide, 5000);
             }
@@ -1043,12 +911,25 @@
                 if (document.hidden) {
                     clearInterval(slideInterval);
                 } else {
+                    clearInterval(slideInterval);
                     slideInterval = setInterval(nextSlide, 5000);
                 }
             });
             
             // Start the slideshow
             startSlideshow();
+            
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        document.querySelector('.mobile-menu-toggle').classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            });
         });
     </script>
 </body>
